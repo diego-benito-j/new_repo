@@ -15,31 +15,40 @@ Before we enter the minutia of how to interpret and understand errors within the
 - You have misunderstood the nature of the problem
 - You have misunderstood the nature of your solution
 
-We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year and  what the error messages reveal about the code we’ve written.
+We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful you should understand to become a better debugger.
 
-The format will be:
+#### Format of this section:
 
+`file_name.c`
 ```c++
+// Some code in C or C++
 #include <iostream>
+
+int main(){
+    cout << "Hello World!";
+}
 ```
 
 <details open>
-<summary>Compilation & Output</summary>
+<summary>**Compilation & Output**</summary>
+<br>
+```console
+komnene@komnene:~$ gcc 
+```
+</details>
+
+<details open>
+<summary>**Expected Compilation & Output**</summary>
 <br> 
 </details>
 
 <details open>
-<summary>Expected Compilation & Output</summary>
+<summary>**Concepts related to issue at hand**</summary>
 <br> 
 </details>
 
 <details open>
-<summary>Concepts related to issue at hand</summary>
-<br> 
-</details>
-
-<details open>
-<summary> Solution </summary>
+<summary>** Solution **</summary>
 <br> 
 </details>
 
