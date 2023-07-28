@@ -69,7 +69,7 @@ dbj@dbj:~$
 <details open>
 <summary>
 
-** Concepts related to issue at hand **
+**Concepts related to issue at hand**
 
 </summary>
 <br> 
