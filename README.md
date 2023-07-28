@@ -84,7 +84,7 @@ dbj@dbj:~$
 You've probably written a python script importing some function/class from some library, where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
 
 
-These statements were making the functions (in this case `stdin()` from module `sys`) available to you in the script you were writting[^1]. Essentially, the `import` statement ensured that whenever you wrote 'sys.stdin.readline()' or 'stdin.readline()', the python interpreter would. 
+These statements were making the functions (in this case `stdin()` from module `sys`) available to you in the script you were writting [^1] . Essentially, the `import` statement ensured that whenever you wrote 'sys.stdin.readline()' or 'stdin.readline()', the python interpreter would. 
 
 You were **including** a function called `readline` within the scope of your python script.
 
