@@ -83,13 +83,13 @@ dbj@dbj:~$
 
 You've probably written a python program importing some function/class from some library[^lib], where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
 
-These statements are making whatever functions you specify **visible and accessible** within your program [^1] - which is another way of saying that you are including the funcitons within the global **scope** of your program. In this particular case, the `import` statement ensures that whenever the python interpreter reads 'sys.stdin.readline()' or 'stdin.readline()', it **knows what the function `readline()` is** since you've specified where the function is defined (some module called sys). 
+These statements are making whatever functions you specify **visible and accessible** within your program [^1] - which is another way of saying that you are including the funcitons within the global **scope** [^scope] of your program. In this particular case, the `import` statement ensures that whenever the python interpreter reads 'sys.stdin.readline()' or 'stdin.readline()', it **knows what the function `readline()` is** since you've specified where the function is defined (some module called sys). 
 
 You are **including** all funcitons associated to the module sys within the scope of your python script, importing them from some file in your computer[^file_py].
 
 In C and C++, any operation that requires reading from standard input (stdin) or printing to standard output (stdout) requires the use of an external library (**no `print()` nor `input()` without any imports like in python!**). 
 
-In our case, we are using `cout`, which is part of the `iostream` library. In python we used the statement `import`, but in C and C++ we would use the statement `#include` followed by the name of the library/header file which contains our functions of interest!.
+In our case, we are using `cout`, which is part of the `iostream` library. In python we used the statement `import`, but in C and C++ we would use the statement `#include` followed by the name of the library/header file [^header_files] which contains our functions of interest!.
 
 
 
@@ -151,8 +151,8 @@ The computer executes the program, but before it has finished* something `**fail
 
 [^lib]: Note that ANY PYTHON FILE can be imported, so you can import whatever file you want! On a similar note, have you wondered why we include `if __name__ == '__main__':` within our code? At a practical level, it has to do with how python imports modules - essentially, we want to differentiate from situations where we execute a file versus when we import the file and initialize it. Please watch the 4 minute video 'https://youtu.be/sugvnHA7ElY' if you're interested!
 
-[^file_py]: These files are stored at /usr/lib/python* if you want to have a look! (I've included the asterisk since you may have differnt versions of python)
+[^file_py]: These files are stored at `/usr/lib/python\*` if you want to have a look! (I've included the asterisk since you may have differnt versions of python)
 
-[^header_files]: 
+[^header_files]: These files are located in `/usr/include/`
 
 [^scope]: "Function-definition scope. Scope is the location in a program where a name is visible and accessible" - Weber State University, Computer Science 1410 6.2.2 Functions and Variable Scope
