@@ -43,21 +43,27 @@ komnene@komnene:~$ gcc
 
 <details open>
 <summary>
+
 #### Expected Compilation & Output
+
 </summary>
 <br> 
 </details>
 
 <details open>
 <summary>
+
 #### Concepts related to issue at hand
+
 </summary>
 <br> 
 </details>
 
 <details open>
 <summary>
+
 #### Solution
+
 </summary>
 <br> 
 </details>
