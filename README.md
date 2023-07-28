@@ -18,10 +18,11 @@ Before we enter the minutia of how to interpret and understand errors within the
 We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful you should understand to become a better debugger.
 
 #### Format of this section:
-***
-`file_name.c`
+
+`file_name.cpp`
 ```c++
 // Some code in C or C++
+
 #include <iostream>
 
 int main(){
@@ -38,7 +39,17 @@ int main(){
 <br>
 
 ```console
-komnene@komnene:~$ gcc 
+dbj@dbj:~$ g++ file_name.cpp -o file_name.x
+file_name.cpp: In function ‘int main()’:
+file_name.cpp:4:5: error: ‘cout’ was not declared in this scope; did you mean ‘std::cout’?
+    4 |     cout << "Hello World!";
+      |     ^~~~
+      |     std::cout
+In file included from file_name.cpp:1:
+/usr/include/c++/11/iostream:61:18: note: ‘std::cout’ declared here
+   61 |   extern ostream cout;          /// Linked to standard output
+      |                  ^~~~
+
 ```
 
 </details>
@@ -70,7 +81,7 @@ komnene@komnene:~$ gcc
 <br> 
 </details>
 
-***
+
 
 
 We urge you to try to understand the error before reading the concepts related to the issue at hand to see if you can identify the problem. 
