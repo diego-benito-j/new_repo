@@ -15,7 +15,7 @@ Before we enter the minutia of how to interpret and understand errors within the
 - You have misunderstood the nature of the problem
 - You have misunderstood the nature of your solution
 
-We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful you should understand to become a better debugger.
+We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful to become a better debugger.
 
 ### Format of this section:
 
@@ -100,13 +100,17 @@ We urge you to try to understand the error before reading the concepts related t
 
 Before reading the solution/alternative code see if you can figure out what the intended behavior, and modify the code appropriately so it does what it ought to do.
 
-- ******************Knowledge******************
-    
+<details>
+<summary>
+</summary>
+<br>
     > Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
     > 
     > 
     > Brian W. Kernighan.
     > 
+</details>
+    
 
 ## Compilation
 
