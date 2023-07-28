@@ -30,7 +30,11 @@ int main(){
 ```
 
 <details open>
-<summary>**Compilation & Output**</summary>
+<summary>
+
+#### Compilation & Output
+
+</summary>
 <br>
 ```console
 komnene@komnene:~$ gcc 
@@ -38,17 +42,23 @@ komnene@komnene:~$ gcc
 </details>
 
 <details open>
-<summary>**Expected Compilation & Output**</summary>
+<summary>
+#### Expected Compilation & Output
+</summary>
 <br> 
 </details>
 
 <details open>
-<summary>**Concepts related to issue at hand**</summary>
+<summary>
+#### Concepts related to issue at hand
+</summary>
 <br> 
 </details>
 
 <details open>
-<summary>** Solution **</summary>
+<summary>
+#### Solution
+</summary>
 <br> 
 </details>
 
