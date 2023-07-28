@@ -17,7 +17,7 @@ Before we enter the minutia of how to interpret and understand errors within the
 
 We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful you should understand to become a better debugger.
 
-#### Format of this section:
+### Format of this section:
 
 `file_name.cpp`
 ```c
@@ -31,7 +31,7 @@ int main(){
 <details open>
 <summary>
 
-##### Compilation & Output
+#### Compilation & Output
 
 </summary>
 <br>
@@ -50,7 +50,7 @@ file_name.cpp:2:5: error: ‘cout’ was not declared in this scope
 <details open>
 <summary>
 
-##### Expected Compilation & Output
+#### Expected Compilation & Output
 
 </summary>
 <br> 
@@ -69,26 +69,21 @@ dbj@dbj:~$
 <details open>
 <summary>
 
-**Concepts related to issue at hand**
+#### Concepts related to issue at hand
 
 </summary>
 <br> 
-
-Libraries
-
-
-
 </details>
 
+Libraries
 
 <details open>
 <summary>
 
-##### Solution
+#### Solution
 
 </summary>
 <br> 
-
 </details>
 
 
