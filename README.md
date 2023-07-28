@@ -20,10 +20,8 @@ We will deal primarily with the latter of the two situations. Our aim is to deve
 #### Format of this section:
 
 `file_name.cpp`
-```c++
+```c
 // Some code in C or C++
-
-#include <iostream>
 
 int main(){
     cout << "Hello World!";
@@ -41,14 +39,9 @@ int main(){
 ```console
 dbj@dbj:~$ g++ file_name.cpp -o file_name.x
 file_name.cpp: In function ‘int main()’:
-file_name.cpp:4:5: error: ‘cout’ was not declared in this scope; did you mean ‘std::cout’?
-    4 |     cout << "Hello World!";
+file_name.cpp:2:5: error: ‘cout’ was not declared in this scope
+    2 |     cout << "Hello World!";
       |     ^~~~
-      |     std::cout
-In file included from file_name.cpp:1:
-/usr/include/c++/11/iostream:61:18: note: ‘std::cout’ declared here
-   61 |   extern ostream cout;          /// Linked to standard output
-      |                  ^~~~
 
 ```
 
@@ -63,6 +56,14 @@ In file included from file_name.cpp:1:
 <br> 
 </details>
 
+```console
+dbj@dbj:~$ g++ file_name.cpp -o file_name.x 
+dbj@dbj:~$ chmod +x file_name.x  #### technically not necessary
+dbj@dbj:~$ ./file_name.x
+Hello World!
+dbj@dbj:~$
+
+
 <details open>
 <summary>
 
@@ -71,6 +72,8 @@ In file included from file_name.cpp:1:
 </summary>
 <br> 
 </details>
+
+Libraries
 
 <details open>
 <summary>
