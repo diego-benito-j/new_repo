@@ -135,5 +135,5 @@ The computer executes the program, but before it has finished* something `**fail
 
 
 
-[^1] If you use an import statement within the main section of your program, it will be available for the entire program, but you can technically import within functions so that there is a local scope to the imported functions. In other words, writing `import sys` at the top of your python program means all
-[^2] Technically python also initializes/executes the file/module whenever one uses `import module_name` which is why one includes `if __name__ == '__main__'` 
+[^1]: If you use an import statement within the main section of your program, it will be available for the entire program, but you can technically import within functions so that there is a local scope to the imported functions. In other words, writing `import sys` at the top of your python program means all
+[^2]: Technically python also initializes/executes the file/module whenever one uses `import module_name` which is why one includes `if __name__ == '__main__'` 
