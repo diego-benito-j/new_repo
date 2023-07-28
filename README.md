@@ -24,11 +24,13 @@ We will deal primarily with the latter of the two situations. Our aim is to deve
 
 </summary>
 <br>
+
     > Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
     > 
     > 
     > Brian W. Kernighan.
     > 
+
 </details>
 
 ### Format of this section:
