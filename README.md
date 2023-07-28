@@ -36,9 +36,11 @@ int main(){
 
 </summary>
 <br>
+
 ```console
 komnene@komnene:~$ gcc 
 ```
+
 </details>
 
 <details open>
