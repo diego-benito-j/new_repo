@@ -19,15 +19,29 @@ We will deal primarily with the latter of the two situations. Our aim is to deve
 
 The format will be:
 
-`example code containing some error` 
+```c++
+#include <iostream>
+```
 
-> Compilation & Output
-> 
+<details open>
+<summary>Compilation & Output</summary>
+<br> 
+</details>
 
-> Expected Compilation & Output
-> 
-- Concepts related to issue at hand
-- `alternative code`
+<details open>
+<summary>Expected Compilation & Output</summary>
+<br> 
+</details>
+
+<details open>
+<summary>Concepts related to issue at hand</summary>
+<br> 
+</details>
+
+<details open>
+<summary> Solution </summary>
+<br> 
+</details>
 
 We urge you to try to understand the error before reading the concepts related to the issue at hand to see if you can identify the problem. 
 
