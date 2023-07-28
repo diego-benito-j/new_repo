@@ -122,7 +122,7 @@ int main(){
 
 
 
-
+---
 We urge you to try to understand the error before reading the concepts related to the issue at hand to see if you can identify the problem. 
 
 Before reading the solution/alternative code see if you can figure out what the intended behavior, and modify the code appropriately so it does what it ought to do.
