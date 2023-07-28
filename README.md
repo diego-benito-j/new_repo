@@ -75,7 +75,14 @@ dbj@dbj:~$
 <br> 
 </details>
 
-Libraries
+**Namespace & Libraries & Scope**
+You've probably written a python script importing some function/class from some library, where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
+
+These statements were making the functions (in this case `stdin()` from module `sys`) available to you in the script you were writting[^1]. Essentially, the `import` statement ensured that whenever you wrote 'sys.stdin.readline()' or 'stdin.readline()', the python interpreter would. 
+
+You were **including** a function called `readline` within the scope of your python script.
+
+In C and C++, any operation that requires reading from standard input (stdin) or printing to standard output (stdout) will involve using a 
 
 <details open>
 <summary>
@@ -115,4 +122,10 @@ The computer `**can**` translate your source code into an executable file.
 
 The computer executes the program, but before it has finished* something `**fails**`
 
-* Sometimes a program will not give any indication that something has gone wrong. It will compile without warnings, it will execute, and it will gracefully exit. It is up to you as a programmer to be aware of the desired behavior of your code ()
+*** Sometimes a program will not give any indication that something has gone wrong. It will compile without warnings, it will execute, and it will gracefully exit. It is up to you as a programmer to be aware of the desired behavior of your code () ***
+
+
+
+
+[^1] If you use an import statement within the main section of your program, it will be available for the entire program, but you can technically import within functions so that there is a local scope to the imported functions. In other words, writing `import sys` at the top of your python program means all
+[^2] Technically python also initializes/executes the file/module whenever one uses `import module_name` which is why one includes `if __name__ == '__main__'` 
