@@ -78,6 +78,7 @@ dbj@dbj:~$
 #### Concepts related to issue at hand
 
 </summary>
+
 ##### Libraries & Scope (INCLUDE NAMESPACE???? STD::)
 
 You've probably written a python program importing some function/class from some library[^lib], where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
