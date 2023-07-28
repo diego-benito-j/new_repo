@@ -17,8 +17,6 @@ Before we enter the minutia of how to interpret and understand errors within the
 
 We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful to become a better debugger.
 
-<br>
-
 > Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
 > 
 > 
@@ -81,16 +79,24 @@ dbj@dbj:~$
 
 </summary>
 <br> 
-</details>
 
 ##### Namespace & Libraries & Scope
 You've probably written a python script importing some function/class from some library, where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
+
 
 These statements were making the functions (in this case `stdin()` from module `sys`) available to you in the script you were writting[^1]. Essentially, the `import` statement ensured that whenever you wrote 'sys.stdin.readline()' or 'stdin.readline()', the python interpreter would. 
 
 You were **including** a function called `readline` within the scope of your python script.
 
 In C and C++, any operation that requires reading from standard input (stdin) or printing to standard output (stdout) will involve using a 
+
+</details>
+
+
+
+
+
+
 
 <details open>
 <summary>
