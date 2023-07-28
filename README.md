@@ -15,7 +15,7 @@ Before we enter the minutia of how to interpret and understand errors within the
 - You have misunderstood the nature of the problem
 - You have misunderstood the nature of your solution
 
-We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful to become a better debugger.
+We will deal primarily with the latter of the two situations. Our aim is to develop a basic understanding of the particularities of C / C++ within the context of your 2nd academic year, specifically what the error messages you'll encounter reveal about the code you’ve written and what concepts are useful to become better debuggers.
 
 > Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
 > 
@@ -81,14 +81,16 @@ dbj@dbj:~$
 <br> 
 
 ##### Namespace & Libraries & Scope
-You've probably written a python script importing some function/class from some library, where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
+You've probably written a python program importing some function/class from some library, where you've had to include a statement along the lines of `import sys` or `from sys import stdin`. 
 
+These statements were making whatever functions you specified available to your program [^1], which is another way of saying that you were including the funcitons within the scope of your program.
 
-These statements were making the functions (in this case `stdin()` from module `sys`) available to you in the script you were writting [^1] . Essentially, the `import` statement ensured that whenever you wrote 'sys.stdin.readline()' or 'stdin.readline()', the python interpreter would. 
+Essentially, the `import` statement ensured that whenever you wrote 'sys.stdin.readline()' or 'stdin.readline()', the python interpreter would know where the function `readline()` was located. 
+
 
 You were **including** a function called `readline` within the scope of your python script.
 
-In C and C++, any operation that requires reading from standard input (stdin) or printing to standard output (stdout) will involve using a 
+In C and C++, any operation that requires reading from standard input (stdin) or printing to standard output (stdout) will require the use of a library 
 
 </details>
 
@@ -135,5 +137,13 @@ The computer executes the program, but before it has finished* something `**fail
 
 
 
-[^1]: If you use an import statement within the main section of your program, it will be available for the entire program, but you can technically import within functions so that there is a local scope to the imported functions. In other words, writing `import sys` at the top of your python program means all
-[^2]: Technically python also initializes/executes the file/module whenever one uses `import module_name` which is why one includes `if __name__ == '__main__'` 
+[^1]: If you use an import statement within the main section of your program, it will be available for the entire program, but you can technically import within functions so that there is a local scope to the imported functions. In other words, writing `import sys` at the top of your python program means all FINISH/SHORTEN
+[^2]: The basic import statement (no "from" clause) is executed in two
+    steps:
+    
+    1. find a module, loading and initializing it if necessary
+    
+    2. define a name or names in the local namespace for the scope where
+       the "import" statement occurs.
+
+[^3]: Have you wondered why we include `if __name__ == '__main__':` within our code? At a practical level, it has to do with how python imports modules - essentially, we want to differentiate from situations where we execute a file versus when we import the file and initialize it. Please watch 'https://youtu.be/sugvnHA7ElY' if you're interested!
