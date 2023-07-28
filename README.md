@@ -57,7 +57,7 @@ file_name.cpp:2:5: error: ‘cout’ was not declared in this scope
 
 ```console
 dbj@dbj:~$ g++ file_name.cpp -o file_name.x 
-dbj@dbj:~$ chmod +x file_name.x  # technically not necessary since file_name.x is already executable
+dbj@dbj:~$ chmod +x file_name.x  # technically not necessary - file_name.x is already executable
 dbj@dbj:~$ ./file_name.x
 Hello World!
 dbj@dbj:~$
@@ -69,13 +69,13 @@ dbj@dbj:~$
 <details open>
 <summary>
 
-##### Concepts related to issue at hand
+** Concepts related to issue at hand **
 
 </summary>
 <br> 
 </details>
 
-Libraries
+#####Libraries
 
 <details open>
 <summary>
