@@ -1,14 +1,276 @@
 # C / C++ errors and concepts
 
+<details>
+<summary>
+
+</summary>
+<br> 
+
+</details>
+
+
 - [section: pass by reference vs. pass by value #26](https://github.com/deliaBlue/laPrepa/issues/26)
 - [section: Handling errors #25](https://github.com/deliaBlue/laPrepa/issues/25)
 - [section: dynamic memory allocation #24](https://github.com/deliaBlue/laPrepa/issues/24)
+
+
+# Memory Allocation
+
+Developing an understanding of how to store and manipulate information 
+is one of our primary aims as programmers. 
+
+Variables, pointers, references, functions, etc... - these are all just 
+ways of organizing and managing data. 
+
+Within the context of C / C++, we can begin to develop an understanding
+of how these abstract things behave by understanding how they are related
+to memory. Over the next academic year, you will become more intimately 
+familiar with these concepts since you **will have to deal with the issues 
+they present**.
+
+This section will introduce some rudimentary concepts relating to memory 
+(contextualized within the framework of C / C++) to help you start developing
+your own mental model of what is happening within your code.
+
+## Variables, Declaration, and Initialization
+Amongst the code you've had to read / write in these sessions, you've been using
+variables. Regardless of the programming language you are using, being able to name
+values so that you can modify and manipulate them is unbelivably useful.
+
+Declaring, initializing, modifying, comparing, assigning - these are just some 
+of the actions you've taken with the value/s stored within the variables you have 
+been using.
+
+
+Since C / C++ are not memory safe, you have to be conscious of what it is
+you are doing when you are declaring a variable, or when you are assigning
+a value to it, or adding to it, etc...
+
+So how should we conceptualize what we are doing? Lets first get 
+familiar with **memory** as it relates to **declaration**, 
+**initialization**, and **assignment**.
+
+**From here on out we are not going to be pedantic. These descriptions
+are simplified and abstracted away for the sake of clarity, not accuracy.**
+
+### Memory
+
+Memory can be thought of as a region of your computer capable of storing 
+information. For our purposes, imagine a finite sequence of 0’s and 1’s.
+
+When your program begins to execute, it is given some memory - some 0’s and 1’s 
+it can use for its own temporary storage of information. Note that this memory 
+already contains data which is just random[^why it isn’t just random] and not 
+particularly useful (see the ...0 1 0 0 1 ... already present inside our 
+sequence).
+
+IMAGE MEMORY
+
+This is known as a memory address and its just what the name implies, a name for
+a location in memory.
+
+Since we’ll want to store the values of something at some point, whatever random data was stored in memory before your program executes isn’t particularly useful for our purposes[^reading privileged information ]. That is why we have to declare variables.
+
+So we have places where we can store information, which leads us to the
+concept of **memory addresses**.
+
+Your program can read and write onto the memory it has been given, and it 
+will interpret the infromation stored there in whatever way you tell it to.
+
+But the program needs to know where the information is located! 
+
+Just like street addresses are some abstraction we use in the real world - a name
+that corresponds to the location of a place - **memory locations** can be refered 
+to via **addresses**!
+
+This is known as a memory address and its just what the name implies, a name for
+a location in memory.
+
+#### vvvv possibly delete vvvv
+Whatever random data was held in memory before your program executes isn't
+particularly useful for our purposes[^reading privileged information]. 
+#### ^^^^ possibly delete ^^^^
+
+If we want to store specific information - i.e if we want to store the value of
+an integer, or a string of characters, or anything at all - we have to know 
+where we're storing it. 
+
+SHOW PYTHON ERROR VARIABLE BEFORE ASSIGNMENT
+SHOW C / C++ ERROR VARIABLE DECLARED BEFORE ASSIGNMENT
+
+<details open>
+<summary>
+
+### Declaring a variable
+
+</summary>
+<br> 
+
+When we declare a variable, we are associating whatever **name** we've 
+provided with some **value**. Lets see an example:
+
+```c++
+int main(){
+    int year;           <--- Declaring a variable of type int
+    year = 1342;        <--- Assigning/Initializing the value of the variable
+}
+```
+
+We are using the name **year** in our code to mean 'some integer I will 
+reference as **year**' - in other words we are associating a name and 
+a value. 
+
+When this program is executed, this variable is simply the name we've given
+to some region in memory - **year** is[^debugger variable names vs addresses] 
+a custom name we've given to some memory location!
+
+
+Lets visualize how we are **naming** a region in memory and what **assigning
+a value to it** would look like given the following code:
+
+```c++
+int main(){
+    char a[4];
+    a = "yes";
+}
+```
+
+IMAGE DECLARATION AND INITIALIZATION
+
+
+</details>
+
+
+### Initializing and assigning values onto a variable
+
+The following is a perfectly reasonable thing to do in Python:
+```python
+a = None
+a = ['this', 'is', 'really', 'useful']
+a = 5
+```
+
+But this isn't the case in C or C++, we can't reassign variables so readily
+because we are workingin a statically typed language.
+[^garabage collection, dynamic]. A very simple example would be the following
+
+
+
+
+### Datatypes and Casting
+At this point, it should be abundantly clear: we are working with data stored
+in memory. Memory is just some assortment of bytes that we write to and read
+from **in a particular way**. This 'particular way' in which we read and write 
+data in memory is what will determine the value the data actually has when we
+retrieve it.
+
+```c
+#include <stdio.h>
+
+int main() {
+    char a[] = "yes";
+    int  b[] = {121, 101, 115};
+    
+    for ( int i = 0; i < 4; i++ ){
+        printf( "block %i char a: %c\n", i, a[i] );
+        printf( "block %i char b: %c\n", i, b[i] );
+
+        printf( "block %i int a: %i\n", i, a[i] );
+        printf( "block %i int b: %i\n", i, b[i] );
+        
+        printf("\n");
+
+    }
+}
+```
+
+Pay special attention to how we are printing things. We are using '%c' and '%i'
+, ostensibly saying "interpret whatever is in **variable_name**[i] as a 
+**name_of_datatype**".
+
+<details>
+<summary>
+
+What is **variable_name**[i]? 
+
+</summary>
+<br> 
+As a reminder, indexing some variable like **variable_name**[i] will return
+whatever is in the i'th block of **variable_name**. Note that the caveat that
+the size of the blocks are dependent on the size of the datatype.
+
+**b**[i] will be 4 bytes that are 4\*i bytes away from b[0]
+INSERT IMAGE
+
+**a**[i] will be 1 byte that is i bytes away from a[0]
+INSERT IMAGE
+
+</details>
+
+
+
+### Buffer Overflow
+If you ever feel confused by what something means, look at the definition.
+
+This is especially pertinent in computer science **because things have names for
+a reason**. 
+
+> Buffer: "a section of computer memory for temporarily storing information" 
+> Overflow: "to flow over the brim of" 
+
+Buffer Overflow refers to the phenomena where data that was supposed to reside
+in a region of computer memory overflows into adjacent memory. Lets look at an
+example to see why **understanding how memory works helps us understand 
+unexpected behaviour**
+
+
+<details>
+<summary>
+
+####Why don't I have to deal with this in python?
+
+</summary>
+<br> 
+
+</details>
+
+
+
+## Pass by Reference vs. Pass by value
+
+One of the most effective ways to speed up our programs is by considering how 
+often they access the devices main memory (i.e our RAM). We want to minimize 
+the amount of information that we need to read/write (or worse still, fetch 
+from secondary memory) because it is a computationally expensive thing to do.
+
+Lets see a rudimentary example in Python as to how effective memory usage can
+make or break the efficiency of a program.
+
+<details>
+<summary>
+
+####Why don't I have to deal with this in python?
+
+</summary>
+<br> 
+
+Who says you aren't? 
+and scope
+copy.copy()
+python is just a bunch of pointers
+
+
+</details>
+
+
+
+
 
 # Handling Errors
 
 Ideally, programming would require little more than a problem, some ingenuity in figuring out how to solve it, and writing out some code that does what it ought to do to solve the issue at hand. 
 
-It is on this statement - “does what it ought to do” - that most difficulties in implementation arise, since we typically believe we know what the intended behavior should be way sooner than we ought to.
+It is on this statement - “does what it ought to do” - that most difficulties in implementation arise. We typically believe we know what the intended behavior is way sooner than we should.
 
 Before we enter the minutia of how to interpret and understand errors within the context of C / C++, you should consider that the hardships of making something do what it ought to do typically emerge from one of the following:
 
@@ -83,9 +345,9 @@ dbj@dbj:~$
 
 You've probably written a python program importing some function/class from some library[^lib], where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
 
-These statements are making whatever functions you specify **visible and accessible** within your program [^1] - which is another way of saying that you are including the funcitons within the global **scope** [^scope] of your program. In this particular case, the `import` statement ensures that whenever the python interpreter reads 'sys.stdin.readline()' or 'stdin.readline()', it **knows what the function `readline()` is** since you've specified where the function is defined (some module called sys). 
+These statements are making whatever functions you specify **visible and accessible** within your program [^1] - which is another way of saying that you are including the functions within the global **scope** [^scope] of your program. In this particular case, the `import` statement ensures that whenever the python interpreter reads 'sys.stdin.readline()' or 'stdin.readline()', it **knows what the function `readline()` is** since you've specified where the function is defined (some module called sys). 
 
-You are **including** all funcitons associated to the module sys within the scope of your python script, importing them from some file in your computer[^file_py].
+You are **including** all functions associated to the module sys within the scope of your python script, importing them from some file in your computer[^file_py].
 
 In C and C++, any operation that requires reading from standard input (stdin) or printing to standard output (stdout) requires the use of an external library (**no `print()` nor `input()` without any imports like in python!**). 
 
