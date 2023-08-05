@@ -127,12 +127,15 @@ the following code:
 
 ```c++
 int main(){
-    char a[4];
+    char a[4];      // <- visual aid represents this line
     a = "yes";
 }
 ```
 
 ![Declaration of memory](graphical_assets/IMG-4310.JPG)
+
+
+
 
 </details>
 
@@ -204,7 +207,7 @@ Consider the following visual aid that follows from the declaration of variable
 ```c++
 int main(){
     char a[4];
-    a = "yes";
+    a = "yes";      // <- visual aid represents this line
 }
 ```
 ![Assignment/Initialization](graphical_assets/IMG-4312.JPG)
