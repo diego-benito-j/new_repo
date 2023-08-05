@@ -134,6 +134,8 @@ int main(){
 
 ![Declaration of memory](graphical_assets/IMG-4310.JPG)
 
+`Note that there already is data inside of 'a'. Where did it come from?`
+
 
 
 
