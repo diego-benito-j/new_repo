@@ -495,3 +495,18 @@ The computer executes the program, but before it has finished* something `**fail
 [^header_files]: These files are located in `/usr/include/`
 
 [^scope]: "Function-definition scope. Scope is the location in a program where a name is visible and accessible" - Weber State University, Computer Science 1410 6.2.2 Functions and Variable Scope
+
+
+
+[^why it isn’t just random]
+
+
+
+
+
+
+[^reading privileged information]:
+[^debugger variable names vs addresses]:
+[^unicode, ascii, and char arrays in C / C++ caveat]:
+[^when they do]:
+[^garabage collection, dynamic]:
