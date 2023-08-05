@@ -159,7 +159,7 @@ were previously held in those memory locations (foreshadowing).
 <details>
 <summary>
 
-#### What would happen if we printed the contents of **a** before it is initialized?
+#### What would happen if we printed the contents of 'a' before it is initialized?
 
 </summary>
 <br> 
