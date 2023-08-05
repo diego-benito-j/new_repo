@@ -29,10 +29,10 @@ familiar with these concepts since you **will have to deal with the issues
 they present**.
 
 This section will introduce some rudimentary concepts relating to memory 
-(contextualized within the framework of C / C++) to help you start developing
+(contextualized in the framework of C / C++) to help you start developing
 your own mental model of what is happening within your code.
 
-## Variables, Declaration, and Initialization
+## Variables, Declaration, Initialization, and Assignment
 Amongst the code you've had to read / write in these sessions, you've been using
 variables. Regardless of the programming language you are using, being able to name
 values so that you can modify and manipulate them is unbelivably useful.
@@ -53,23 +53,18 @@ familiar with **memory** as it relates to **declaration**,
 **From here on out we are not going to be pedantic. These descriptions
 are simplified and abstracted away for the sake of clarity, not accuracy.**
 
-### Memory
+### Memory as it relates to variables
 
 Memory can be thought of as a region of your computer capable of storing 
 information. For our purposes, imagine a finite sequence of 0’s and 1’s.
 
 When your program begins to execute, it is given some memory - some 0’s and 1’s 
-it can use for its own temporary storage of information. Note that this memory 
-already contains data which is just random[^why it isn’t just random] and not 
-particularly useful (see the ...0 1 0 0 1 ... already present inside our 
-sequence).
+it can use for its own temporary storage of information. 
 
-IMAGE MEMORY
+Note that this memory already contains data which is just random
+[^why it isn’t just random] and not particularly useful. 
 
-This is known as a memory address and its just what the name implies, a name for
-a location in memory.
-
-Since we’ll want to store the values of something at some point, whatever random data was stored in memory before your program executes isn’t particularly useful for our purposes[^reading privileged information ]. That is why we have to declare variables.
+[IMAGE MEMORY](graphical_assets/IMG-4309.JPG)
 
 So we have places where we can store information, which leads us to the
 concept of **memory addresses**.
@@ -83,13 +78,11 @@ Just like street addresses are some abstraction we use in the real world - a nam
 that corresponds to the location of a place - **memory locations** can be refered 
 to via **addresses**!
 
-This is known as a memory address and its just what the name implies, a name for
+This is known as a memory address, and its just what the name implies, a name for
 a location in memory.
 
-#### vvvv possibly delete vvvv
 Whatever random data was held in memory before your program executes isn't
 particularly useful for our purposes[^reading privileged information]. 
-#### ^^^^ possibly delete ^^^^
 
 If we want to store specific information - i.e if we want to store the value of
 an integer, or a string of characters, or anything at all - we have to know 
@@ -111,22 +104,23 @@ provided with some **value**. Lets see an example:
 
 ```c++
 int main(){
-    int year;           <--- Declaring a variable of type int
-    year = 1342;        <--- Assigning/Initializing the value of the variable
+    int year;           // <--- Declaring a variable of type int
+    year = 1342;        // <--- Assigning/Initializing the value of the variable
 }
 ```
 
 We are using the name **year** in our code to mean 'some integer I will 
-reference as **year**' - in other words we are associating a name and 
-a value. 
+reference as **year**' - in other words we are associating a **name** and 
+a **value**. 
 
 When this program is executed, this variable is simply the name we've given
 to some region in memory - **year** is[^debugger variable names vs addresses] 
 a custom name we've given to some memory location!
 
 
-Lets visualize how we are **naming** a region in memory and what **assigning
-a value to it** would look like given the following code:
+Lets visualize how we are **naming** a region in memory, and later on
+we'll look at what **assigning a value to it** would look like given 
+the following code:
 
 ```c++
 int main(){
@@ -135,13 +129,83 @@ int main(){
 }
 ```
 
-IMAGE DECLARATION AND INITIALIZATION
-
+IMAGE DECLARATION AND INITIALIZATION[^caveat on unicode, ascii, and bytes]
 
 </details>
 
 
-### Initializing and assigning values onto a variable
+### Initializing and assigning data to a variable
+
+We've declared a variable, in turn the compiler has allocated as much memory as
+we've specified or as much memory as is default. In our case, we've specified 
+that **a** is an array of 4 chars (meaning each `block` contians 1 byte since
+chars have that size [^unicode, ascii, and char arrays in C / C++ caveat]) 
+ergo 4 bytes will be allocated to variable **a**.
+
+We would say that this region in memory is uninitialized because the compiler
+has simply associated a user defined variable name with a memory region. We
+now have to write onto that region in memory by initializing/assigning a value
+onto our variable - otherwise we'll just have whatever garbage value/random bits 
+were previously held in those memory locations (foreshadowing).
+
+<details>
+<summary>
+What would happen if we printed the contents of **a** before it is initialized?
+</summary>
+<br> 
+
+</details>
+
+To reiterate, **C / C++ do not have default values they assign to your variables
+whenever you declare them**[^when they do]. You need to initialize them.
+
+In other words, this code in C++ has **undefined behaviour** because the value 
+of **a** will not always be the same:
+
+```c++
+#include <iostream>
+int main() {
+    int a;
+    a = a + 5;
+    cout << a << "\n";
+    return 0
+}
+```
+
+Meanwhile this Python code does have defined behaviour because the value of 
+**a** will always start of as 0
+
+```python
+def main():
+   a = int() 
+   print( a )
+
+if __name__ == "__main__":
+    main()
+```
+
+Although the python example might seem a little contrived (one wouldn't 
+typically initialize an integer that way), it highlights the idea that 
+the code written in C++ or the analogous version in C do not initialize
+variables for you.
+
+So how could we conceive of the act of initialization/assignment? Well a starting
+point would be the **rewriting of that region of memory** with some value that
+was either input or hard coded into our code.
+
+Consider the following visual aid that follows from the declaration of variable
+**a** :
+
+```c++
+int main(){
+    char a[4];
+    a = "yes";
+}
+```
+IMAGE ASSIGNMENT
+
+
+#### Why do I have to care about type?
 
 The following is a perfectly reasonable thing to do in Python:
 ```python
@@ -151,8 +215,10 @@ a = 5
 ```
 
 But this isn't the case in C or C++, we can't reassign variables so readily
-because we are workingin a statically typed language.
-[^garabage collection, dynamic]. A very simple example would be the following
+because we are workingin a statically typed language 
+[^garabage collection, dynamic].
+
+
 
 
 
@@ -161,8 +227,8 @@ because we are workingin a statically typed language.
 At this point, it should be abundantly clear: we are working with data stored
 in memory. Memory is just some assortment of bytes that we write to and read
 from **in a particular way**. This 'particular way' in which we read and write 
-data in memory is what will determine the value the data actually has when we
-retrieve it.
+data in memory is what will determine the value the data is interpreted as 
+once it is retrieve.
 
 ```c
 #include <stdio.h>
@@ -196,13 +262,15 @@ What is **variable_name**[i]?
 </summary>
 <br> 
 As a reminder, indexing some variable like **variable_name**[i] will return
-whatever is in the i'th block of **variable_name**. Note that the caveat that
-the size of the blocks are dependent on the size of the datatype.
+the value of the i'th block of **variable_name**. Note that we are saying 
+the **value**, we are not (nor should we) deal with raw bytes.
 
-**b**[i] will be 4 bytes that are 4\*i bytes away from b[0]
+
+**b**[i] will be 4 bytes that are 4\*i bytes away from b[0] where the 0s and 1s
+are representing an integer with 
 INSERT IMAGE
 
-**a**[i] will be 1 byte that is i bytes away from a[0]
+**a**[i] will be 1 byte that is i bytes away from a[0] encoded
 INSERT IMAGE
 
 </details>
@@ -239,8 +307,8 @@ unexpected behaviour**
 ## Pass by Reference vs. Pass by value
 
 One of the most effective ways to speed up our programs is by considering how 
-often they access the devices main memory (i.e our RAM). We want to minimize 
-the amount of information that we need to read/write (or worse still, fetch 
+often they access the devices memory. We want to minimize the amount of 
+information that we need to read/write (or worse still, fetch 
 from secondary memory) because it is a computationally expensive thing to do.
 
 Lets see a rudimentary example in Python as to how effective memory usage can
@@ -259,10 +327,9 @@ and scope
 copy.copy()
 python is just a bunch of pointers
 
-
 </details>
 
-
+As we've seen 
 
 
 
