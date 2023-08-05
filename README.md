@@ -64,7 +64,7 @@ it can use for its own temporary storage of information.
 Note that this memory already contains data which is just random
 [^why it isn’t just random] and not particularly useful. 
 
-[IMAGE MEMORY](graphical_assets/IMG-4309.JPG)
+![Representation of variable](graphical_assets/IMG-4309.JPG)
 
 So we have places where we can store information, which leads us to the
 concept of **memory addresses**.
@@ -129,7 +129,7 @@ int main(){
 }
 ```
 
-IMAGE DECLARATION AND INITIALIZATION[^caveat on unicode, ascii, and bytes]
+![Declaration of memory](graphical_assets/IMG-4309.JPG)
 
 </details>
 
@@ -202,7 +202,7 @@ int main(){
     a = "yes";
 }
 ```
-IMAGE ASSIGNMENT
+![Assignment/Initialization](graphical_assets/IMG-4312.JPG)
 
 
 #### Why do I have to care about type?
