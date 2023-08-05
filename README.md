@@ -72,7 +72,10 @@ concept of **memory addresses**.
 Your program can read and write onto the memory it has been given, and it 
 will interpret the infromation stored there in whatever way you tell it to.
 
-But the program needs to know where the information is located! 
+But the program needs to know where the information is located!
+In the image above, we've named 'Byte 1', 'Byte 2', [...], 'Byte 9' and we need
+something analogous to this so that the computer can identify which regions in 
+memory to access.
 
 Just like street addresses are some abstraction we use in the real world - a name
 that corresponds to the location of a place - **memory locations** can be refered 
@@ -129,7 +132,7 @@ int main(){
 }
 ```
 
-![Declaration of memory](graphical_assets/IMG-4309.JPG)
+![Declaration of memory](graphical_assets/IMG-4310.JPG)
 
 </details>
 
