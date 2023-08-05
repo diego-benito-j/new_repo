@@ -153,7 +153,9 @@ were previously held in those memory locations (foreshadowing).
 
 <details>
 <summary>
-What would happen if we printed the contents of **a** before it is initialized?
+
+#### What would happen if we printed the contents of **a** before it is initialized?
+
 </summary>
 <br> 
 
@@ -260,7 +262,7 @@ Pay special attention to how we are printing things. We are using '%c' and '%i'
 <details>
 <summary>
 
-What is **variable_name**[i]? 
+#### What is **variable_name**[i]? 
 
 </summary>
 <br> 
