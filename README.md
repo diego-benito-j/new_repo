@@ -199,13 +199,8 @@ int main(){
 ```
 ![Assignment/Initialization](graphical_assets/IMG-4312.JPG)
 
-<<<<<<< HEAD
-
 #### Why do I have to care about type? Why isn't it like Python?
-=======
-~~
-#### Why do I have to care about type?
->>>>>>> 6b42069d6b37943a04209e3444eb9f88673cab80
+
 
 The following is a perfectly reasonable thing to do in Python:
 ```python
