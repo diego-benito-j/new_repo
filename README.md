@@ -16,30 +16,15 @@
 
 # Memory Allocation
 
-Developing an understanding of how to store and manipulate information 
-is one of our primary aims as programmers. 
+Developing an understanding of how to store and manipulate information is one of our primary aims as programmers. Variables, pointers, references, functions, etc... - these are all just ways of organizing and managing data. Within the context of C / C++, we can begin to develop an understanding of how these abstract things behave by understanding how they are related to memory. 
 
-Variables, pointers, references, functions, etc... - these are all just 
-ways of organizing and managing data. 
-
-Within the context of C / C++, we can begin to develop an understanding
-of how these abstract things behave by understanding how they are related
-to memory. Over the next academic year, you will become more intimately 
-familiar with these concepts since you **will have to deal with the issues 
-they present**.
-
-This section will introduce some rudimentary concepts relating to memory 
-(contextualized in the framework of C / C++) to help you start developing
+Over the next academic year, you will become more intimately familiar with these concepts since you **will have to deal with the issues they present**.  This section will introduce some rudimentary concepts relating to memory (contextualized in the framework of C / C++) to help you start developing
 your own mental model of what is happening within your code.
 
 ## Variables, Declaration, Initialization, and Assignment
-Amongst the code you've had to read / write in these sessions, you've been using
-variables. Regardless of the programming language you are using, being able to name
-values so that you can modify and manipulate them is unbelivably useful.
+Amongst the code you've had to read / write in these sessions, you've been using variables. Regardless of the programming language you are using, being able to name values so that you can modify and manipulate them is unbelivably useful.
 
-Declaring, initializing, modifying, comparing, assigning - these are just some 
-of the actions you've taken with the value/s stored within the variables you have 
-been using.
+Declaring, initializing, modifying, comparing, assigning - these are just some of the actions you've taken with the value/s stored within the variables you have been using.
 
 
 Since C / C++ are not memory safe, you have to be conscious of what it is
@@ -215,7 +200,7 @@ int main(){
 ![Assignment/Initialization](graphical_assets/IMG-4312.JPG)
 
 
-#### Why do I have to care about type?
+#### Why do I have to care about type? Why isn't it like Python?
 
 The following is a perfectly reasonable thing to do in Python:
 ```python
@@ -316,9 +301,7 @@ unexpected behaviour**
 
 ## Pass by Reference vs. Pass by value
 
-One of the most effective ways to speed up our programs is by considering how 
-often they access the devices memory. We want to minimize the amount of 
-information that we need to read/write (or worse still, fetch 
+One of the most effective ways to speed up our programs is by considering how and when our program accesses the devices memory. We want to minimize the amount of information that we need to read/write (or worse still, fetch 
 from secondary memory) because it is a computationally expensive thing to do.
 
 Lets see a rudimentary example in Python as to how effective memory usage can
@@ -338,8 +321,151 @@ copy.copy()
 python is just a bunch of pointers
 
 </details>
+Lets consider some code that resolves the following problem.
 
-As we've seen 
+`Generate the reverse complement of a DNA sequence from start codon to end codon.` 
+
+> If no coding sequence is present, print 'No coding seq found'.
+> Input will be a non-empty string, if a start codon is present an end codon will be present in the appropriate reading frame`
+
+```python
+from sys import stdin
+
+def rev_complement( inp_string ):
+    rev_comp = ""
+
+    comp['A'] = 'T'
+    comp['C'] = 'G'
+    comp['T'] = 'A'
+    comp['G'] = 'C'
+
+    for nucleotide in inp_string:
+        rev_comp += comp[nucleotide]
+
+    return( rev_comp ) 
+         
+def main():
+    initial_seq = stdin.readline().strip()
+    rev_comp = rev_complement( initial_seq )
+    print( rev_comp )
+
+```
+ 
+```c++
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+string reverseComplement( string input_seq );
+
+int main(){
+    string seq;
+    string reversed_seq;   // not_in_camel_case !
+
+    cout << "Input DNA seq\n" ;
+    cin >> seq;
+    //seq = "AAAAAAAA";
+    reversed_seq = reverseComplement( seq );
+    cout << "The reverse complemnt is \"" << reversed_seq << "\"";
+
+}
+
+string reverseComplement( string input_seq ) {   // camel case is convention in C++ !
+    map< char , char > complement;
+
+    complement[ 'A' ] = 'T';
+    complement[ 'T' ] = 'A';
+    complement[ 'C' ] = 'G';
+    complement[ 'G' ] = 'C';
+
+    string reverseStr;
+
+    for (int i = 0; i < input_seq.length(); i++){
+        reverseStr += complement[ input_seq[ i ] ];
+    }
+
+    reverse( reverseStr.begin(), reverseStr.end() );
+
+    return( reverseStr );
+}
+```
+
+We want to highlight two issues with this implementation. 
+
+First and foremost, notice that we are storing some input into a variable of 
+type string (`seq`). Then, we invoke the `reverseComplement` function by calling
+`reverseComplement( seq );` in line ###LineNum_IncludeLineNumsInMD###. 
+
+This is an example of variable passing/argument passing known as `Pass By Value` 
+
+In this case, the parameter to `reverseComplement` is a string datatype, and
+we are 'passing' data by calling the function with some value 
+`reverseComplement( someString )` - in our case, `string `seq`. Calling this 
+function which receives the value of variable `seq` will declare a new variable 
+(`reverseComplement`) and it will initialize this variable with the value
+that was passed as argument in the function call. This variable is only available
+within the scope of the funciton[^stack, function frames] and will no longer
+exist after the function call is terminated. ### deletion after termination
+and allocated/deallocated memory for variables in stack might be unnecessary
+
+We are declaring a variable of the same type, initializing it with the same
+value - we are making a copy!
+
+And that's the problem, sometimes we might generate the appropriate 
+results without requiring a copy of the data being passed into a funciton.
+This is where we get to the wonderful world of pointers, and references!
+As you already know, variables are just names that indicate where some 
+memory is, and how it should be interpreted by default[###WASNT MADE CLEAR
+BEFORE WITH TYPE AND CASTING; REITERATE]. So, instead of making a copy of
+the value of some variable, we could instead just tell indicate where 
+the value of the variable is located (i.e we can just pass the memory 
+address).
+
+This is where `references` and `pointers` come in handy.
+
+#### References & Pointers
+
+https://www.ibm.com/docs/en/zos/2.4.0?topic=calls-pass-by-reference-c-only
+https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html#zz-2.1
+
+Instead of passing the value (i.e instead of making the function store the
+value being passed into the funciton into another variable) we can pass
+something that points to memory.
+
+Pointers are a datatype that do **precisely what their name suggests**.
+They are a type of a variable that points to some region in memory - think
+of them as literally . 
+
+References are a type variable used to refer to an existing variable. They are
+like an alias, another name for a location in memory.
+ ####Difference b/w reference use when declared vs when used in an expression ?####
+
+> **Note**
+> In an expression, `&` denotes the address-of operator, which returns the address of a variable.
+> When & is used in a declaration (including function formal parameters), it is part of the type identifier and is used to declare a reference variable (or reference or alias or alternate name). It is used to provide another name, or another reference, or alias to an existing variable.
+
+
+Why is pass by value the default?
+
+In essence, because that default behaviour prevents unintended modifications to
+original values and simplifies memory management. Additionally, pass by value is
+generally more efficient than pass by reference when copying small-sized 
+datatypes.
+
+
+
+**EMBED EXAMPLE**
+https://icarus.cs.weber.edu/~dab/cs1410/textbook/6.Functions/value.html
+**EMBED EXAMPLE**
+
+
+
+
+
+
 
 
 
@@ -510,3 +636,5 @@ The computer executes the program, but before it has finished* something `**fail
 [^unicode, ascii, and char arrays in C / C++ caveat]:
 [^when they do]:
 [^garabage collection, dynamic]:
+
+[^stack, function frames]: When a function is called, memory for local variables is allocated on the stack, and when the function returns, that memory is deallocated. This means that the local variables' values are no longer available or accessible once the function exits, and any attempt to access them after the function call has completed will lead to undefined behavior.
