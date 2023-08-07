@@ -49,7 +49,7 @@ it can use for its own temporary storage of information.
 Note that this memory already contains data which is just random
 [^why it isn’t just random] and not particularly useful. 
 
-![Representation of variable](graphical_assets/IMG-4309.JPG)
+![Representation of variable](graphical_assets/memory.JPG)
 
 So we have places where we can store information, which leads us to the
 concept of **memory addresses**.
@@ -117,7 +117,7 @@ int main(){
 }
 ```
 
-![Declaration of memory](graphical_assets/IMG-4310.JPG)
+![Declaration of memory](graphical_assets/declaration.JPG)
 
 `Note that there already is data inside of 'a'. Where did it come from?`
 
@@ -197,7 +197,7 @@ int main(){
     a = "yes";      // <- visual aid represents this line
 }
 ```
-![Assignment/Initialization](graphical_assets/IMG-4312.JPG)
+![Assignment/Initialization](graphical_assets/assignment.jpg)
 
 #### Why do I have to care about type? Why isn't it like Python?
 
