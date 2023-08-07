@@ -406,7 +406,7 @@ In this case, the parameter to `reverseComplement` is a string datatype, and
 we are 'passing' data by calling the function with some value 
 `reverseComplement( someString )` - in our case, string `seq`. Calling this 
 function which receives the value of variable `seq` will declare a new variable 
-(`reverseComplement`) and it will initialize this variable with the value
+(reverseComplement's `input\_seq`) and it will initialize this variable with the value
 that was passed as argument in the function call. This variable is only available
 within the scope of the funciton[^stack, function frames] and will no longer
 exist after the function call is terminated. ### deletion after termination
