@@ -52,10 +52,7 @@ Note that this memory already contains data which is just random
 ![Representation of variable](graphical_assets/memory.JPG)
 
 So we have places where we can store information, which leads us to the
-concept of **memory addresses**.
-
-Your program can read and write onto the memory it has been given, and it 
-will interpret the infromation stored there in whatever way you tell it to.
+concept of **memory addresses**.  Your program can read and write onto the memory it has been given, and it will interpret the infromation stored there in whatever way you tell it to.
 
 But the program needs to know where the information is located!
 In the image above, we've named 'Byte 1', 'Byte 2', [...], 'Byte 9' and we need
@@ -65,13 +62,11 @@ memory to access.
 Just like street addresses are some abstraction we use in the real world - a name
 that corresponds to the location of a place - **memory locations** can be refered 
 to via **addresses**!
-
 This is known as a memory address, and its just what the name implies, a name for
 a location in memory.
 
 Whatever random data was held in memory before your program executes isn't
 particularly useful for our purposes[^reading privileged information]. 
-
 If we want to store specific information - i.e if we want to store the value of
 an integer, or a string of characters, or anything at all - we have to know 
 where we're storing it. 
@@ -465,7 +460,48 @@ https://icarus.cs.weber.edu/~dab/cs1410/textbook/6.Functions/value.html
 
 
 
+```c++
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <map>
 
+using namespace std;
+
+string reverseComplement( string & input_seq );
+
+int main(){
+    string seq;
+    string reversed_seq;
+
+    cout << "Input DNA seq\n" ;
+    cin >> seq;
+    //seq = "AAAAAAAA";
+    reversed_seq = reverseComplement( seq );
+    cout << "The reverse complemnt is \"" << reversed_seq << "\"";
+
+}
+
+string reverseComplement( string & input_seq ) {
+    map< char , char > complement;
+
+    complement[ 'A' ] = 'T';
+    complement[ 'T' ] = 'A';
+    complement[ 'C' ] = 'G';
+    complement[ 'G' ] = 'C';
+
+    string reverseStr;
+
+    for (int i = 0; i < input_seq.length(); i++){
+        reverseStr += complement[ input_seq[ i ] ];
+    }
+
+    reverse( reverseStr.begin(), reverseStr.end() );
+
+    return( reverseStr );
+}
+
+```
 
 
 
@@ -597,6 +633,48 @@ Before reading the solution/alternative code see if you can figure out what the 
 ## Compilation
 
 Source Code →→
+
+```c++
+                                        // missing header #include <algorithm>
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std; 
+
+string reverse( string input_seq );    // <-- namespace clash w/ std::reverse & pass by value
+
+int main(){
+    string seq; 
+    string reversed_seq; 
+
+    cout << "Input DNA seq\n" ;
+    cin >> seq;
+    //seq = "AAAAAAAA";
+    reversed_seq = reverse( seq );
+    cout << "The reverse complemnt is \"" << reversed_seq << "\""     // <-- where ; @?
+
+}
+
+string reverseComplement( string & input_seq ) { // <-- pass by ref (not consistent ^^^)
+    map< char , char > complement;
+    
+    complement[ "A" ] = "T";    <-- using " instead of ' when map uses chars not str!
+    complement[ "T" ] = "A";    <-- using " instead of ' when map uses chars not str!
+    complement[ "C" ] = "G";    <-- using " instead of ' when map uses chars not str!
+    complement[ "G" ] = "C";    <-- using " instead of ' when map uses chars not str!
+
+    string reverseStr;
+    
+    for (int i = 0, i < input_seq.length(), i++){       // <-- where the ; @?
+        reverseStr += complement[ input_seq[ i ] ];
+    }
+    
+    reverse( reverseStr.begin(), reverseStr.end() ); 
+
+    return( reverseStr ); 
+}
+```
 
 ## Syntax
 

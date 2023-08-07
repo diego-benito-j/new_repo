@@ -5,7 +5,7 @@
 
 using namespace std; 
 
-string reverseComplement( string input_seq ); 
+string reverseComplement( string & input_seq ); 
 
 int main(){
     string seq; 
@@ -19,7 +19,7 @@ int main(){
 
 }
 
-string reverseComplement( string input_seq ) {
+string reverseComplement( string & input_seq ) {
     map< char , char > complement;
     
     complement[ 'A' ] = 'T';
