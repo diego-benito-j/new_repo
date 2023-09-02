@@ -329,22 +329,28 @@ from sys import stdin
 
 def rev_complement( inp_string ):
     rev_comp = ""
-
+    print( inp_string )
+    comp = dict()
     comp['A'] = 'T'
     comp['C'] = 'G'
     comp['T'] = 'A'
     comp['G'] = 'C'
-
+    
     for nucleotide in inp_string:
         rev_comp += comp[nucleotide]
-
+    
     return( rev_comp ) 
          
 def main():
+    print('Input DNA seq')
     initial_seq = stdin.readline().strip()
     rev_comp = rev_complement( initial_seq )
-    print( rev_comp )
+    print( f'The reverse complement is "{rev_comp}"' )
 
+
+
+if __name__ == '__main__':
+    main()
 ```
  
 ```c++
