@@ -355,12 +355,12 @@ bjb
 0
 ```
 
-There are three things to higlight here contextualized in this image:
+There are three things to higlight with this example (see image for more context):
 First, notice that our code is printing from j[0] to j[6] - since `j` and `b` are adjacent to each other, we see their contents interpreted as integers in each of the for loops.
 Second, notice that our first initialization of `j` assigned the string "jjj", but when we print the contents of j we only get "jj" and when print the bytes from j[0 .. 6] only the first two seem to have been assigned. As shown in the image, only j[0] and j[1] are regions of memory that the compiler has dedicated to our `j` string, this is because we declared `j` to be a string of length 2 `char j[2]`. Thus, there is no assurances that j[2] would contain whatever value it was assigned.
 
 
-Third, notice that after executing line `j[3] = 'j'` we see that `b` has changed from "bbb" to "bjb". This is buffer overflow! We've managed to flow over the limits of `j` into a region of memory that belongs to `b`. This demonstrates the that you have full autonomy over how memory is used within your program, and should serve as a reminder that variables are just pointing to some region in memory.
+Third, notice that after executing line `j[3] = 'j'` we see that `b` has changed from "bbb" to "bjb" where `b[1]` was modified. This is buffer overflow! We've managed to flow over the limits of `j` into a region of memory that belongs to `b` where j[3] corresponds to b[1]. This demonstrates the that you have full autonomy over how memory is used within your program, and should serve as a reminder that variables are just pointing to some region in memory.
 
 
 
@@ -368,8 +368,7 @@ Third, notice that after executing line `j[3] = 'j'` we see that `b` has changed
 
 ## Pass by Reference vs. Pass by value
 
-One of the most effective ways to speed up our programs is by considering how and when our program accesses the devices memory. We want to minimize the amount of information that we need to read/write (or worse still, fetch 
-from secondary memory) because it is a computationally expensive thing to do.
+One of the most effective ways to speed up our programs is by considering how and when our program accesses the devices memory. We want to minimize the amount of information that we need to read/write (or worse still, fetch from secondary memory) because it is a computationally expensive thing to do.
 
 Lets see a rudimentary example in Python and C++ to understand why effective memory usage can
 make or break the efficiency of a program.
@@ -457,27 +456,26 @@ First and foremost, notice that we are storing some input into a variable of
 type string (`seq`). Then, we invoke the `reverseComplement` function by calling
 `reverseComplement( seq );`. 
 
-This is an example of variable passing/argument passing known as `Pass By Value` 
+This is an example of variable passing (i.e argument passing) known as `Pass By Value` 
 
-In this case, the parameter to `reverseComplement` is a string datatype, and
+The parameter of function `reverseComplement` is a string datatype, and
 we are 'passing' data by calling the function with some value 
-`reverseComplement( someString )` - in our case, string `seq`. Calling this 
+`reverseComplement( some\_value )` - in our case, some_value is string `seq`. Calling this 
 function which receives the value of variable `seq` will declare a new variable 
 (reverseComplement's `input\_seq`) and it will initialize this variable with the value
 that was passed as argument in the function call. This variable is only available
 within the scope of the funciton[^stack, function frames] and will no longer
-exist after the function call is terminated. ### deletion after termination
-and allocated/deallocated memory for variables in stack might be unnecessary
+exist after the function call is terminated. 
 
 We are declaring a variable of the same type, initializing it with the same
-value - we are making a copy!
+value, available within the scope of the function - we are making a copy!
 
 And that's the problem, sometimes we might generate the appropriate 
-results without requiring a copy of the data being passed into a funciton.
+results without requiring a copy of the data to be passed into a funciton.
 This is where we get to the wonderful world of pointers, and references!
 As you already know, variables are just names that indicate where some 
 memory is, and how it should be interpreted by default. So, instead of making a copy of
-the value of some variable, we could instead just tell indicate where 
+the value of some variable, we could instead just indicate where 
 the value of the variable is located (i.e we can just pass the memory 
 address).
 
@@ -485,32 +483,25 @@ This is where `references` and `pointers` come in handy.
 
 #### References & Pointers
 
-https://www.ibm.com/docs/en/zos/2.4.0?topic=calls-pass-by-reference-c-only
-https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html#zz-2.1
+When you pass a parameter by value, like `seq` in reverseComplement(seq), the function creates an internal copy of that parameter. This is a separate instance that has the same value as the original variable `seq` but is completely independent of it. Any changes you make inside the function will not affect the original variable `seq`. This can be inefficient for large data structures because it involves copying all the data.
 
-Instead of passing the value (i.e instead of making the function store the
-value being passed into the funciton into another variable) we can pass
-something that points to memory.
+Pointers are a datatype that do **precisely what their name suggests**. They literally "point" to a location in memory. A pointer stores the memory address of another variable. For example, if you have a variable `seq`, then a pointer `ptr` can hold the memory address of `seq`. This pointer can then be passed to a function, which can dereference it to access or modify the original variable `seq`.
 
-Pointers are a datatype that do **precisely what their name suggests**.
-They are a type of a variable that points to some region in memory - think
-of them as literally . 
-
-References are a type variable used to refer to an existing variable. They are
-like an alias, another name for a location in memory.
- ####Difference b/w reference use when declared vs when used in an expression ?####
+References are like nicknames or aliases for a pre-existing variables. When you declare a reference, you're saying, "I want to refer to this memory location using another name." From that point on, both the original variable and the reference can be used interchangeably. This also means that if you modify the reference, you are in essence modifying the original variable.
 
 > **Note**
 > In an expression, `&` denotes the address-of operator, which returns the address of a variable.
 > When & is used in a declaration (including function formal parameters), it is part of the type identifier and is used to declare a reference variable (or reference or alias or alternate name). It is used to provide another name, or another reference, or alias to an existing variable.
 
-
-Why is pass by value the default?
-
+Why is Pass by Value Default?
 In essence, because that default behaviour prevents unintended modifications to
 original values and simplifies memory management. Additionally, pass by value is
 generally more efficient than pass by reference when copying small-sized 
 datatypes.
+
+
+https://www.ibm.com/docs/en/zos/2.4.0?topic=calls-pass-by-reference-c-only
+https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html#zz-2.1
 
 
 
@@ -519,7 +510,7 @@ https://icarus.cs.weber.edu/~dab/cs1410/textbook/6.Functions/value.html
 **EMBED EXAMPLE**
 
 
-
+So, we can rewrite the original code as follows, which will prevent our string from being copied EVERY TIME THE FUNCTION IS CALLED:
 
 ```c++
 #include <algorithm>
