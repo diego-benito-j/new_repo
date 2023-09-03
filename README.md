@@ -292,8 +292,6 @@ the value of the i'th block of `variable_name`. Note that we are saying
 the **value**, we are not (nor should we) deal with raw bytes.
 
 
-
-
 **b**[i] will be 4\*i bytes away from b[0] where the 0s and 1s
 for each block of bytes are representing an integer
 
@@ -963,9 +961,11 @@ You should be wary of syntax - you ~~may~~ will have missed something.
 
 # Time to practice
 
-Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems paying special attention to the error messages themselves.
+Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems paying special attention to the error messages that may appear along the way.
 
+If you're up for it, generate a recursive and a non recursive solution to these problems.
 
+[Chess Tournament][https://jutge.org/problems/X38550_en]
 ![Square Every Digit][https://www.codewars.com/kata/546e2562b03326a88e000020]
 ![Floating Point Comparison][https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8]
 
