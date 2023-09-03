@@ -176,8 +176,10 @@ Although the python example might seem a little contrived (one wouldn't
 typically initialize an integer that way), it highlights the idea that 
 the code written in C++ or the analogous version in C do not initialize
 variables for you.
+So how could we conceive of the act of initialization/assignment?
 
-So how could we conceive of the act of initialization/assignment? Well a starting
+
+Well a starting
 point would be the **rewriting of that region of memory** with some value that
 was either input or hard coded into our code.
 
