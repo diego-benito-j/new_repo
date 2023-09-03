@@ -292,12 +292,10 @@ the value of the i'th block of `variable_name`. Note that we are saying
 the **value**, we are not (nor should we) deal with raw bytes.
 
 
-**b**[i] will be 4 bytes that are 4\*i bytes away from b[0] where the 0s and 1s
-are representing an integer with 
-INSERT IMAGE
+**b**[i] will be 4\*i bytes away from b[0] where the 0s and 1s
+for each block of bytes are representing an integer
 
-**a**[i] will be 1 byte that is i bytes away from a[0] encoded
-INSERT IMAGE
+**a**[i] will be 1\*i bytes  away from a[0] where the 0s and 1s for each block are representing a char
 
 </details>
 
