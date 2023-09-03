@@ -966,7 +966,9 @@ Given this rudimentary introduction into C / C++ concepts relating to memory, an
 If you're up for it, generate a recursive and a non recursive solution to these problems.
 
 [Chess Tournament](https://jutge.org/problems/X38550_en)
+
 [Square Every Digit](https://www.codewars.com/kata/546e2562b03326a88e000020)
+
 [Floating Point Comparison](https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8)
 
 
