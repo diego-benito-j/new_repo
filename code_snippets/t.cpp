@@ -11,6 +11,6 @@ int one() {
 
 int two() {
     string a;
-    a= "hello";
+    a = "hello";
     cout << a << '\n';
 }

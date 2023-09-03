@@ -282,16 +282,87 @@ in a region of computer memory overflows into adjacent memory. Lets look at an
 example to see why **understanding how memory works helps us understand 
 unexpected behaviour**
 
+Lets consider the follwing code:
 
-<details>
-<summary>
+```c
+#include <stdio.h>
 
-####Why don't I have to deal with this in python?
+int main() {
+    char j[2] = "jjj" ;
 
-</summary>
-<br> 
+        printf( j );
+        printf("\n");
 
-</details>
+        for ( int i = 0; i < 6; i++ ){
+            printf( "%i \n", j[i] );
+        }
+        printf("\n");
+
+    char b[3] = "bbb";
+
+        printf( b );
+        printf("\n");
+
+        for ( int i = 0; i < 6; i++ ){
+            printf( "%i\n", j[i] );
+        }
+        printf("\n");
+
+    j[3] = 'j'; // <-- THIS SHOULD NOT BE MODIFYING b
+        
+        printf( b );
+        printf("\n");
+
+        for ( int i = 0; i < 6; i++ ){
+            printf( "%i\n", j[i] );
+        }
+        printf("\n");
+}
+```
+
+This code results in the following:
+
+```console
+dbj@dbj:~/new_repo/code_snippets$ gcc char_arr.c -o char_arr.x
+
+    ERRORS NOT RELEVANT 
+    FOR THE PURPOSES
+    OF THIS EXAMPLE
+
+dbj@dbj:~/new_repo/code_snippets$ ./char_arr.x 
+jj
+106 
+106 
+0 
+0 
+0 
+0 
+
+bbb
+106
+106
+98
+98
+98
+0
+
+bjb
+106
+106
+98
+106
+98
+0
+```
+
+There are three things to higlight here contextualized in this image:
+First, notice that our code is printing from j[0] to j[6] - since `j` and `b` are adjacent to each other, we see their contents interpreted as integers in each of the for loops.
+Second, notice that our first initialization of `j` assigned the string "jjj", but when we print the contents of j we only get "jj" and when print the bytes from j[0 .. 6] only the first two seem to have been assigned. As shown in the image, only j[0] and j[1] are regions of memory that the compiler has dedicated to our `j` string, this is because we declared `j` to be a string of length 2 `char j[2]`. Thus, there is no assurances that j[2] would contain whatever value it was assigned.
+
+
+Third, notice that after executing line `j[3] = 'j'` we see that `b` has changed from "bbb" to "bjb". This is buffer overflow! We've managed to flow over the limits of `j` into a region of memory that belongs to `b`. This demonstrates the that you have full autonomy over how memory is used within your program, and should serve as a reminder that variables are just pointing to some region in memory.
+
+
 
 
 
@@ -300,25 +371,10 @@ unexpected behaviour**
 One of the most effective ways to speed up our programs is by considering how and when our program accesses the devices memory. We want to minimize the amount of information that we need to read/write (or worse still, fetch 
 from secondary memory) because it is a computationally expensive thing to do.
 
-Lets see a rudimentary example in Python as to how effective memory usage can
+Lets see a rudimentary example in Python and C++ to understand why effective memory usage can
 make or break the efficiency of a program.
 
-<details>
-<summary>
-
-####Why don't I have to deal with this in python?
-
-</summary>
-<br> 
-
-Who says you aren't? 
-and scope
-copy.copy()
-python is just a bunch of pointers
-
-</details>
-Lets consider some code that resolves the following problem.
-
+Consider some code that resolves the following problem.
 `Generate the reverse complement of a DNA sequence from start codon to end codon.` 
 
 > If no coding sequence is present, print 'No coding seq found'.
@@ -399,7 +455,7 @@ We want to highlight two issues with this implementation.
 
 First and foremost, notice that we are storing some input into a variable of 
 type string (`seq`). Then, we invoke the `reverseComplement` function by calling
-`reverseComplement( seq );` in line ###LineNum_IncludeLineNumsInMD###. 
+`reverseComplement( seq );`. 
 
 This is an example of variable passing/argument passing known as `Pass By Value` 
 
@@ -420,8 +476,7 @@ And that's the problem, sometimes we might generate the appropriate
 results without requiring a copy of the data being passed into a funciton.
 This is where we get to the wonderful world of pointers, and references!
 As you already know, variables are just names that indicate where some 
-memory is, and how it should be interpreted by default[###WASNT MADE CLEAR
-BEFORE WITH TYPE AND CASTING; REITERATE]. So, instead of making a copy of
+memory is, and how it should be interpreted by default. So, instead of making a copy of
 the value of some variable, we could instead just tell indicate where 
 the value of the variable is located (i.e we can just pass the memory 
 address).

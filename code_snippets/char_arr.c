@@ -1,17 +1,33 @@
 #include <stdio.h>
 
 int main() {
-    char a[2] = "jjj" ;
-    for ( int i = 0; i < 6; i++ ){
-        printf( "%i\n", a[i] );
-    }
+    char j[2] = "jjj" ;
 
-    printf("\n");
+        printf( j );
+        printf("\n");
 
-    char b[3] = "aaa";
-    for ( int i = 0; i < 6; i++ ){
-        printf( "%i\n", a[i] );
-    }
-    printf( "%li\n", sizeof(a) );
+        for ( int i = 0; i < 6; i++ ){
+            printf( "%i \n", j[i] );
+        }
+        printf("\n");
 
+    char b[3] = "bbb";
+
+        printf( b );
+        printf("\n");
+
+        for ( int i = 0; i < 6; i++ ){
+            printf( "%i\n", j[i] );
+        }
+        printf("\n");
+
+    j[3] = 'j'; // <-- THIS SHOULD NOT BE MODIFYING B
+        
+        printf( b );
+        printf("\n");
+
+        for ( int i = 0; i < 6; i++ ){
+            printf( "%i\n", j[i] );
+        }
+        printf("\n");
 }
