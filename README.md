@@ -966,8 +966,8 @@ Given this rudimentary introduction into C / C++ concepts relating to memory, an
 If you're up for it, generate a recursive and a non recursive solution to these problems.
 
 [Chess Tournament](https://jutge.org/problems/X38550_en)
-![Square Every Digit][https://www.codewars.com/kata/546e2562b03326a88e000020]
-![Floating Point Comparison][https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8]
+[Square Every Digit](https://www.codewars.com/kata/546e2562b03326a88e000020)
+[Floating Point Comparison](https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8)
 
 
 [^lib]: Note that ANY PYTHON FILE can be imported, so you can import whatever file you want! On a similar note, have you wondered why we include `if __name__ == '__main__':` within our code? At a practical level, it has to do with how python imports modules - essentially, we want to differentiate from situations where we execute a file versus when we import the file and initialize it. Please watch the 4 minute video 'https://youtu.be/sugvnHA7ElY' if you're interested!
