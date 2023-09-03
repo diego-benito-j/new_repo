@@ -141,11 +141,12 @@ were previously held in those memory locations (foreshadowing).
 </summary>
 <br> 
 
+Try it! Create an empty string and print its content. You will get a random set of characters, maybe a few of these '�' will appear because the compiler interprets the bytes in `a[i]` as characters result in an "an unknown, unrecognised, or unrepresentable character".
+
 </details>
 
 To reiterate, **C / C++ do not have default values they assign to your variables
 whenever you declare them**[^when they do]. You need to initialize them.
-
 In other words, this code in C++ has **undefined behaviour** because the value 
 of **a** will not always be the same:
 
@@ -512,7 +513,6 @@ string reverseComplement( string & input_seq ) {
 # Handling Errors
 
 Ideally, programming would require little more than a problem, some ingenuity in figuring out how to solve it, and writing out some code that does what it ought to do to solve the issue at hand. 
-
 It is on this statement - “does what it ought to do” - that most difficulties in implementation arise. We typically believe we know what the intended behavior is way sooner than we should.
 
 Before we enter the minutia of how to interpret and understand errors within the context of C / C++, you should consider that the hardships of making something do what it ought to do typically emerge from one of the following:
