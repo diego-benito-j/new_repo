@@ -363,29 +363,25 @@ dbj@dbj:~/new_repo/code_snippets$ gcc char_arr.c -o char_arr.x
     OF THIS EXAMPLE
 
 dbj@dbj:~/new_repo/code_snippets$ ./char_arr.x 
-jj
-106 
-106 
-0 
-0 
-0 
-0 
 
-bbb
-106
-106
-98
-98
-98
-0
+     j   j  � � � �
+     j   j  b b b � 
+     j   j  b j b �
+    
+ 𝐣:  0   1  3 4 5 6  ..
+     └───┘
+ 𝐛: -2  -1  0 1 2 3  ..
+            └───┘
+--------------------------
 
-bjb
-106
-106
-98
-106
-98
-0
+     jj  bbb bjb
+     
+     106 106 106
+     106 106 106
+     ..0 .98 .98
+     ..0 .98 106
+     ..0 .98 .98
+     ..0 ..0 ..0
 ```
 
 There are three things to higlight with this example (see image for more context):
@@ -968,8 +964,8 @@ You should be wary of syntax - you ~~may~~ will have missed something.
 Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems paying special attention to the error messages themselves.
 
 
-!(Square Every Digit)[https://www.codewars.com/kata/546e2562b03326a88e000020]
-!(Floating Point Comparison)[https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8]
+![Square Every Digit][https://www.codewars.com/kata/546e2562b03326a88e000020]
+![Floating Point Comparison][https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8]
 
 
 [^lib]: Note that ANY PYTHON FILE can be imported, so you can import whatever file you want! On a similar note, have you wondered why we include `if __name__ == '__main__':` within our code? At a practical level, it has to do with how python imports modules - essentially, we want to differentiate from situations where we execute a file versus when we import the file and initialize it. Please watch the 4 minute video 'https://youtu.be/sugvnHA7ElY' if you're interested!
