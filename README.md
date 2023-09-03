@@ -931,9 +931,12 @@ You should be wary of syntax - you ~~may~~ will have missed something.
 
 # Time to practice
 
-Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems and 
+Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems paying special attention to the error messages that you (and we) will inevitably get!
 
-[^1]: If you use an import statement within the main section of your program, it will be available for the entire program like when you write `import os` at the beginning of the file. You can technically import within functions, so that there is a local scope to the imported functions.
+
+!(Square Every Digit)[https://www.codewars.com/kata/546e2562b03326a88e000020]
+!(Floating Point Comparison)[https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8]
+
 
 [^lib]: Note that ANY PYTHON FILE can be imported, so you can import whatever file you want! On a similar note, have you wondered why we include `if __name__ == '__main__':` within our code? At a practical level, it has to do with how python imports modules - essentially, we want to differentiate from situations where we execute a file versus when we import the file and initialize it. Please watch the 4 minute video 'https://youtu.be/sugvnHA7ElY' if you're interested!
 
