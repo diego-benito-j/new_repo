@@ -657,6 +657,7 @@ You are **including** all functions associated to the module sys within the scop
 In C and C++, any operation that requires reading from standard input (stdin) or printing to standard output (stdout) requires the use of an external library (**no `print()` nor `input()` without any imports like in python!**). 
 
 In our case, we are using `cout`, which is part of the `iostream` library. In python we used the statement `import`, but in C and C++ we would use the statement `#include` followed by the name of the library/header file [^header_files] which contains our functions of interest!
+Remember, importing/including simply gives you **access to some already existing repository of code**.
 
 
 
