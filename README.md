@@ -93,7 +93,6 @@ int main(){
 We are using the name **year** in our code to mean 'some integer I will 
 reference as **year**' - in other words we are associating a **name** and 
 a **value**. 
-
 When this program is executed, this variable is simply the name we've given
 to some region in memory - **year** is[^debugger variable names vs addresses] 
 a custom name we've given to some memory location!
