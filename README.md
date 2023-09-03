@@ -43,7 +43,6 @@ are simplified and abstracted away for the sake of clarity, not accuracy.**
 
 Memory can be thought of as a region of your computer capable of storing 
 information. For our purposes, imagine a finite sequence of 0’s and 1’s.
-
 When your program begins to execute, it is given some memory - some 0’s and 1’s 
 it can use for its own temporary storage of information. 
 Note that this memory already contains data which is just random
@@ -53,7 +52,6 @@ Note that this memory already contains data which is just random
 
 So we have places where we can store information, which leads us to the
 concept of **memory addresses**.  Your program can read and write onto the memory it has been given, and it will interpret the infromation stored there in whatever way you tell it to.
-
 But the program needs to know where the information is located!
 In the image above, we've named 'Byte 1', 'Byte 2', [...], 'Byte 9' and we need
 something analogous to this so that the computer can identify which regions in 
