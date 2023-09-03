@@ -558,17 +558,20 @@ string reverseComplement( string & input_seq ) {
 
 ```
 
+Lets see a very basic model that could be helpful. Consider a function `foo( param\_a )` that receives some string and returns its length. The following would correspond to the sequence of steps that would transpire if we used pass by value:
 
-If we were to think more abstractly, we are doing what is shown in the second figure rather than what is shown in the first. 
-> **Note**
-> Choosing to use pass by value or pass by reference has consequences on how your programs run. These images are not intended to be an accurate representation of how memory is allocated, but rather provide some intuition as to why copying things when it isn't necessary wastes precious resources. Rember that each time things are being copied, those are CPU cycles that are being used to copy that data. So remember that your choices matter!
-
-
-
-![Declaration of memory](graphical_assets/declaration.JPG)
 
 ![Pass by Value](graphical_assets/pass_by_value.JPG)
+
+On the other hand, we could conceptualize what is happening when we pass by reference as follows:
 ![Pass by Reference](graphical_assets/pass_by_ref.JPG)
+
+As we can see, the latter does not have to spend as much time copying each element of string `a` into the `foo`'s private copy, and therefore would be more efficient. 
+
+> **Note**
+>  These images are not intended to be an accurate representation of how memory is allocated, but rather provide some intuition as to why copying things when it isn't necessary wastes precious resources. Rember that each time things are being copied, those are CPU cycles that are being used to copy that data. So remember that your choices matter - if you use pass by value or pass by reference, it will have consequences on how your programs run!
+
+
 
 
 # Handling Errors
