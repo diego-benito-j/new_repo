@@ -500,7 +500,7 @@ we are 'passing' data by calling the function with some value
 function which receives the value of variable `seq` will declare a new variable 
 (reverseComplement's `input\_seq`) and it will initialize this variable with the value
 that was passed as argument in the function call. This variable is only available
-within the scope of the funciton[^stack, function frames] and will no longer
+within the scope of the funciton[^stack_function_frames] and will no longer
 exist after the function call is terminated. 
 
 We are declaring a variable of the same type, initializing it with the same
@@ -945,4 +945,4 @@ Given this rudimentary introduction into C / C++ concepts relating to memory, an
 
 
 
-[^stack, function frames]: When a function is called, memory for local variables is allocated on the stack, and when the function returns, that memory is deallocated. This means that the local variables' values are no longer available or accessible once the function exits, and any attempt to access them after the function call has completed will lead to undefined behavior.
+[^stack_function_frames]: When a function is called, memory for local variables is allocated on the stack, and when the function returns, that memory is deallocated. This means that the local variables' values are no longer available or accessible once the function exits, and any attempt to access them after the function call has completed will lead to undefined behavior.
