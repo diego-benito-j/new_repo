@@ -30,10 +30,11 @@ Declaring, initializing, modifying, comparing, assigning - these are just some o
 Since C / C++ are not memory safe, you have to be conscious of what it is
 you are doing when you are declaring a variable, or when you are assigning
 a value to it, or adding to it, etc...
+
+
 So how should we conceptualize what we are doing? Lets first get 
 familiar with **memory** as it relates to **declaration**, 
 **initialization**, and **assignment**.
-
 **From here on out we are not going to be pedantic. These descriptions
 are simplified and abstracted away for the sake of clarity, not accuracy.**
 
