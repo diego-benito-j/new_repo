@@ -22,11 +22,14 @@ Over the next academic year, you will become more intimately familiar with these
 your own mental model of what is happening within your code.
 
 ## Variables, Declaration, Initialization, and Assignment
-Amongst the code you've had to read / write in these sessions, you've been using variables. Regardless of the programming language you are using, being able to name values so that you can modify and manipulate them is unbelivably useful. Declaring, initializing, modifying, comparing, assigning - these are just some of the actions you've taken with the value/s stored within the variables you have been using.
+Amongst the code you've had to read / write in these sessions, you've been using variables. Regardless of the programming language you are using, being able to name values so that you can modify and manipulate them is unbelivably useful.
+
+
+
+Declaring, initializing, modifying, comparing, assigning - these are just some of the actions you've taken with the value/s stored within the variables you have been using.
 Since C / C++ are not memory safe, you have to be conscious of what it is
 you are doing when you are declaring a variable, or when you are assigning
 a value to it, or adding to it, etc...
-
 So how should we conceptualize what we are doing? Lets first get 
 familiar with **memory** as it relates to **declaration**, 
 **initialization**, and **assignment**.
