@@ -488,9 +488,9 @@ This is where `references` and `pointers` come in handy.
 
 When you pass a parameter by value, like `seq` in reverseComplement(seq), the function creates an internal copy of that parameter. This is a separate instance that has the same value as the original variable `seq` but is completely independent of it. Any changes you make inside the function will not affect the original variable `seq`. This can be inefficient for large data structures because it involves copying all the data.
 
-Pointers are a datatype that do **precisely what their name suggests**. They literally "point" to a location in memory. A pointer stores the memory address of another variable. For example, if you have a variable `seq`, then a pointer `ptr` can hold the memory address of `seq`. This pointer can then be passed to a function, which can dereference it to access or modify the original variable `seq`.
+Pointers are a datatype that do **precisely what their name suggests**. They literally "point" to a location in memory. A pointer stores the memory address of another variable. For example, if you have variable `seq`, then a pointer `ptr\_to\_seq` could hold the memory address of `seq`. This pointer can then be passed to a function, which can be dereferenced to access or modify the original variable `seq`.
 
-References are like nicknames or aliases for a pre-existing variables. When you declare a reference, you're saying, "I want to refer to this memory location using another name." From that point on, both the original variable and the reference can be used interchangeably. This also means that if you modify the reference, you are in essence modifying the original variable.
+References are like nicknames or aliases for a pre-existing variable. When you declare a reference, you're saying, "I want to refer to this memory location using another name." From that point on, both the original variable and the reference can be used interchangeably. This also means that if you modify the reference, you are in essence modifying the original variable.
 
 > **Note**
 > In an expression, `&` denotes the address-of operator, which returns the address of a variable.
@@ -513,7 +513,7 @@ https://icarus.cs.weber.edu/~dab/cs1410/textbook/6.Functions/value.html
 **EMBED EXAMPLE**
 
 
-So, we can rewrite the original code as follows, which will prevent our string from being copied EVERY TIME THE FUNCTION IS CALLED:
+So, we can rewrite the original code as follows, which will prevent our string from being copied EVERY TIME THE FUNCTION IS CALLED because instead of passing the value of the variable, we are passing the value of the reference:
 
 ```c++
 #include <algorithm>
@@ -559,6 +559,16 @@ string reverseComplement( string & input_seq ) {
 ```
 
 
+If we were to think more abstractly, we are doing what is shown in the second figure rather than what is shown in the first. 
+> **Note**
+> Choosing to use pass by value or pass by reference has consequences on how your programs run. These images are not intended to be an accurate representation of how memory is allocated, but rather provide some intuition as to why copying things when it isn't necessary wastes precious resources. Rember that each time things are being copied, those are CPU cycles that are being used to copy that data. So remember that your choices matter!
+
+
+
+![Declaration of memory](graphical_assets/declaration.JPG)
+
+![Pass by Value](graphical_assets/pass_by_value.JPG)
+![Pass by Reference](graphical_assets/pass_by_ref.JPG)
 
 
 # Handling Errors
