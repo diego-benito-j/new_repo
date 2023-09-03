@@ -32,6 +32,7 @@ you are doing when you are declaring a variable, or when you are assigning
 a value to it, or adding to it, etc...
 
 
+
 So how should we conceptualize what we are doing? Lets first get 
 familiar with **memory** as it relates to **declaration**, 
 **initialization**, and **assignment**.
