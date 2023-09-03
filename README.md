@@ -22,11 +22,7 @@ Over the next academic year, you will become more intimately familiar with these
 your own mental model of what is happening within your code.
 
 ## Variables, Declaration, Initialization, and Assignment
-Amongst the code you've had to read / write in these sessions, you've been using variables. Regardless of the programming language you are using, being able to name values so that you can modify and manipulate them is unbelivably useful.
-
-Declaring, initializing, modifying, comparing, assigning - these are just some of the actions you've taken with the value/s stored within the variables you have been using.
-
-
+Amongst the code you've had to read / write in these sessions, you've been using variables. Regardless of the programming language you are using, being able to name values so that you can modify and manipulate them is unbelivably useful. Declaring, initializing, modifying, comparing, assigning - these are just some of the actions you've taken with the value/s stored within the variables you have been using.
 Since C / C++ are not memory safe, you have to be conscious of what it is
 you are doing when you are declaring a variable, or when you are assigning
 a value to it, or adding to it, etc...
@@ -45,7 +41,6 @@ information. For our purposes, imagine a finite sequence of 0’s and 1’s.
 
 When your program begins to execute, it is given some memory - some 0’s and 1’s 
 it can use for its own temporary storage of information. 
-
 Note that this memory already contains data which is just random
 [^why it isn’t just random] and not particularly useful. 
 
@@ -636,9 +631,9 @@ Before reading the solution/alternative code see if you can figure out what the 
 
     
 
-## Compilation
+## Compile-Time
 
-Source Code →→
+The computer **`can’t`** translate your source code into an executable file.
 
 ```c++
                                         // missing header #include <algorithm>
@@ -682,19 +677,14 @@ string reverseComplement( string & input_seq ) { // <-- pass by ref (not consist
 }
 ```
 
-## Syntax
-
-The computer **`can’t`** translate your source code into an executable file.
 
 ## Run-Time
 
-The computer `**can**` translate your source code into an executable file.
-
-The computer executes the program, but before it has finished something `**fails**`
+The computer `**can**` translate your source code into an executable file. The computer executes the program, but before it has finished something `**fails**`.
 
 We've provided an example that works for most cases, but fails in particular string inputs. Could you figure out which?
 
-```
+```c++
 #include <iostream>
 #include <string>
 using namespace std;
@@ -712,7 +702,7 @@ float calculate_gc_content(string& sequence) {
         }
     }
 
-    return static_cast<float>( gc_count ) / total_sequence;  
+    return gc_count / total_sequence;  
 }
 
 int main() {
@@ -723,15 +713,14 @@ int main() {
 }
 
 ```
-The output with AATGCGG is the following:
+The output of 'AATGCGG' is the following:
 ```console
 dbj@dbj:~/new_repo/code_snippets$ g++ GC_content.cpp -o GC_content.x
 dbj@dbj:~/new_repo/code_snippets$ ./GC_content.x 
 GC content: 0.625
 ```
 
-Instead of AATGCGG try an empty string, what will happen?
-
+Instead of AATGCGG try an empty string by modifying this code, what will happen?
 
 Yes! It's a 'division by zero' error. Since 0 / 0 is not a valid floating point operation, an aptly named floating point exception error has occured! Again, you are not supposed to know this, but a quick google search (literally copying and pasting "Floating point exception (core dumped)" into a search engine) reveals that these errors are related to invalid operations that are done on floating point numbers.
 
@@ -741,15 +730,47 @@ dbj@dbj:~/new_repo/code_snippets$ ./GC_content.x
 Floating point exception (core dumped)
 ```
 
-What would be a solution to this? One possibility would be to simply check whether the sequence is of non-zero length.
+What would be a solution to this? One possibility would be to simply check whether the sequence is of non-zero length before we enter the body of the function.
 
 ```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+float calculate_gc_content(string& sequence) {
+    if (sequence.length() == 0){    // <--
+        return 0;                   // <--
+    }                               // <--
+
+    int gc_count = 0;
+    int total_sequence = 0;
+
+    for ( int i = 0; i < sequence.length(); i++) {
+        if (sequence[i] == 'G' || sequence[i] == 'C') {
+            gc_count++;
+        }
+        if (sequence[i] == 'G' || sequence[i] == 'C' || sequence[i] == 'A' || sequence[i] == 'T') {
+            total_sequence++;
+        }
+    }
+
+    return gc_count / total_sequence;  
+}
+
+int main() {
+    string dna_sequence = "AATGCGGG";  
+    float gc_content = calculate_gc_content(dna_sequence);
+    cout << "GC content: " << gc_content << endl;  
+    return 0;
+}
+float calculate_gc_content( string& sequence ){
+
 ```
 
-### Algorithmic Errors
-Sometimes a program will not give any indication that something has gone wrong. It will compile without warnings, it will execute, and it will gracefully exit. It is up to you as a programmer to be aware of the desired behavior of your code ()
+### Semantic Errors
+Sometimes a program will not give any indication that something has gone wrong. It will compile without warnings, it will execute, and it will gracefully exit. It is up to you as a programmer to be aware of the desired behavior of your code.
 
-Try to see the error in the following code snippet, deducing what the intende behaviour should be from the function and file names.
+Try to find the error in the following code snippet, deducing what the intended behaviour of the function was.
 
 ```c++
 
@@ -776,13 +797,10 @@ int main() {
 
 ```
 
-Did you catch it? 
+Did you catch it? We are trying to count the number of 'G' chars in a string, but we seem to be overshooting and counting every char as if it were 'G'. 
+The problematic line is `if ( dna[i] = 'G' )` but could you tell us why?
 
-if ( dna[i] = 'G' ) <-- This line is the problem!
-
-When the program is executed, this line of code seems perfectly reasonable to the compiler. We are missing a single "==" sign here, but why isn't this showing up as an error?
-
-In c++, the assignment operation returns the value of the thing being assigned. For example:
+When the program is executed, this line of code seems perfectly reasonable to the compiler. We are using `=` instead of `==` here, but why isn't this showing up as an error? In c++, the assignment operation returns the value of the thing being assigned. For example:
 
 ```c++
     #include <string>
@@ -798,7 +816,7 @@ In c++, the assignment operation returns the value of the thing being assigned. 
         cout << ( dna[1] = 'r' ) << endl;
     }
 ```
-When compiled and executed, this code results in the following:
+When this code is compiled and executed, the following occurs:
 
 ```console
 dbj@dbj:~/new_repo$ g++ example_assignment_nonzero.cpp -o example_assignment_nonzero.x -Wall
@@ -807,14 +825,11 @@ dbj@dbj:~/new_repo$ ./example_assignment_nonzero.x
 r
 ```
 
-As we can see, the assignment operation simply returns the value of whatever is being assigned. Thus, when we evaluated 'if ( dna[i] = 'G' )' this is evaluating 'if 'G'' which is true because it is a non-zero/null value!
-       
+As we can see, the assignment operation simply returns the value of whatever is being assigned. Remember that 0 is false and everything else is true. When we evaluate `if ( dna[i] = 'G' )` it's as if we are evaluating `'if 'G'`,  which is true because the char 'G' is non-zero! So our problematic implementation silently converts all elements of `dna` string into 'G''s whilst the if statement is evaluated as true. No error is raised because this is perfectly reasonable code, it just isn't doing what you want it to!
 
+This is just to remind you that semantic errors are a pain, because they require you to notice something in your code that you will probably gloss over multiple times. 
 
-So the program silently converts all elements of the ##dna## string into 'G''s whilst the if statement is evaluated as true. No error is raised because this is perfectly reasonable code, it just isn't doing what you expected it to! Thus you should be wary of syntax - you may have missed something.
-
-
-
+You should be wary of syntax - you ~~may~~ will have missed something.
 
 
 [^1]: If you use an import statement within the main section of your program, it will be available for the entire program like when you write `import os` at the beginning of the file. You can technically import within functions, so that there is a local scope to the imported functions.
