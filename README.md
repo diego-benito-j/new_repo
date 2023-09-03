@@ -292,6 +292,8 @@ the value of the i'th block of `variable_name`. Note that we are saying
 the **value**, we are not (nor should we) deal with raw bytes.
 
 
+
+
 **b**[i] will be 4\*i bytes away from b[0] where the 0s and 1s
 for each block of bytes are representing an integer
 
