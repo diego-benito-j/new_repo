@@ -123,7 +123,7 @@ int main(){
 
 We've declared a variable, in turn the compiler has allocated as much memory as
 we've specified or as much memory as is default. In our case, we've specified 
-that **a** is an array of 4 chars (meaning each `block` contians 1 byte since
+that **a** is an array of 4 chars (meaning each `block` contains 1 byte since
 chars have that size [^unicode, ascii, and char arrays in C / C++ caveat]) 
 ergo 4 bytes will be allocated to variable **a**.
 
