@@ -665,10 +665,10 @@ int main(){
 string reverseComplement( string & input_seq ) { // <-- pass by ref (not consistent ^^^)
     map< char , char > complement;
     
-    complement[ "A" ] = "T";    <-- using " instead of ' when map uses chars not str!
-    complement[ "T" ] = "A";    <-- using " instead of ' when map uses chars not str!
-    complement[ "C" ] = "G";    <-- using " instead of ' when map uses chars not str!
-    complement[ "G" ] = "C";    <-- using " instead of ' when map uses chars not str!
+    complement[ "A" ] = "T";    //  <-- using " instead of ' when map uses chars not str!
+    complement[ "T" ] = "A";    //  <-- using " instead of ' when map uses chars not str!
+    complement[ "C" ] = "G";    //  <-- using " instead of ' when map uses chars not str!
+    complement[ "G" ] = "C";    //  <-- using " instead of ' when map uses chars not str!
 
     string reverseStr;
     
@@ -690,9 +690,129 @@ The computer **`can’t`** translate your source code into an executable file.
 
 The computer `**can**` translate your source code into an executable file.
 
-The computer executes the program, but before it has finished* something `**fails**`
+The computer executes the program, but before it has finished something `**fails**`
 
-*** Sometimes a program will not give any indication that something has gone wrong. It will compile without warnings, it will execute, and it will gracefully exit. It is up to you as a programmer to be aware of the desired behavior of your code () ***
+We've provided an example that works for most cases, but fails in particular string inputs. Could you figure out which?
+
+```
+#include <iostream>
+#include <string>
+using namespace std;
+
+float calculate_gc_content(string& sequence) {
+    int gc_count = 0;
+    int total_sequence = 0;
+
+    for ( int i = 0; i < sequence.length(); i++) {
+        if (sequence[i] == 'G' || sequence[i] == 'C') {
+            gc_count++;
+        }
+        if (sequence[i] == 'G' || sequence[i] == 'C' || sequence[i] == 'A' || sequence[i] == 'T') {
+            total_sequence++;
+        }
+    }
+
+    return static_cast<float>( gc_count ) / total_sequence;  
+}
+
+int main() {
+    string dna_sequence = "AATGCGGG";  
+    float gc_content = calculate_gc_content(dna_sequence);
+    cout << "GC content: " << gc_content << endl;  
+    return 0;
+}
+
+```
+The output with AATGCGG is the following:
+```console
+dbj@dbj:~/new_repo/code_snippets$ g++ GC_content.cpp -o GC_content.x
+dbj@dbj:~/new_repo/code_snippets$ ./GC_content.x 
+GC content: 0.625
+```
+
+Instead of AATGCGG try an empty string, what will happen?
+
+
+Yes! It's a 'division by zero' error. Since 0 / 0 is not a valid floating point operation, an aptly named floating point exception error has occured! Again, you are not supposed to know this, but a quick google search (literally copying and pasting "Floating point exception (core dumped)" into a search engine) reveals that these errors are related to invalid operations that are done on floating point numbers.
+
+```console
+dbj@dbj:~/new_repo/code_snippets$ g++ GC_content.cpp -o GC_content.x
+dbj@dbj:~/new_repo/code_snippets$ ./GC_content.x 
+Floating point exception (core dumped)
+```
+
+What would be a solution to this? One possibility would be to simply check whether the sequence is of non-zero length.
+
+```c++
+```
+
+### Algorithmic Errors
+Sometimes a program will not give any indication that something has gone wrong. It will compile without warnings, it will execute, and it will gracefully exit. It is up to you as a programmer to be aware of the desired behavior of your code ()
+
+Try to see the error in the following code snippet, deducing what the intende behaviour should be from the function and file names.
+
+```c++
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int calculate_G_content( string dna ){ 
+    
+    int g_count = 0;
+    for ( int i = 0; i < dna.length(); i++ ) {
+        if ( dna[i] = 'G' ) g_count++;
+    }
+    return( g_count ); 
+    }
+
+int main() {
+    string dna = "ATGCGTAA";
+    int g_content = calculate_G_content(dna);
+    cout << "Guanine's observed: " << g_content << endl;
+    return 0;
+}
+
+```
+
+Did you catch it? 
+
+if ( dna[i] = 'G' ) <-- This line is the problem!
+
+When the program is executed, this line of code seems perfectly reasonable to the compiler. We are missing a single "==" sign here, but why isn't this showing up as an error?
+
+In c++, the assignment operation returns the value of the thing being assigned. For example:
+
+```c++
+    #include <string>
+    #include <iostream>
+    
+    using namespace std;
+    
+    int main(){
+        int i;
+        cout << (i = 22) << endl; 
+    
+        string dna = "AAT";
+        cout << ( dna[1] = 'r' ) << endl;
+    }
+```
+When compiled and executed, this code results in the following:
+
+```console
+dbj@dbj:~/new_repo$ g++ example_assignment_nonzero.cpp -o example_assignment_nonzero.x -Wall
+dbj@dbj:~/new_repo$ ./example_assignment_nonzero.x 
+22
+r
+```
+
+As we can see, the assignment operation simply returns the value of whatever is being assigned. Thus, when we evaluated 'if ( dna[i] = 'G' )' this is evaluating 'if 'G'' which is true because it is a non-zero/null value!
+       
+
+
+So the program silently converts all elements of the ##dna## string into 'G''s whilst the if statement is evaluated as true. No error is raised because this is perfectly reasonable code, it just isn't doing what you expected it to! Thus you should be wary of syntax - you may have missed something.
+
 
 
 
