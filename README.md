@@ -240,18 +240,18 @@ int main() {
 ```
 
 Pay special attention to how we are printing things. We are using '%c' and '%i'
-, ostensibly saying "interpret whatever is in **variable_name**[i] as a 
+, ostensibly saying "interpret whatever is in `variable_name[i]` as a 
 **name_of_datatype**".
 
 <details>
 <summary>
 
-#### What is **variable_name**[i]? 
+#### What is variable_name[i]? 
 
 </summary>
 <br> 
-As a reminder, indexing some variable like **variable_name**[i] will return
-the value of the i'th block of **variable_name**. Note that we are saying 
+As a reminder, indexing some variable like `variable_name[i]` will return
+the value of the i'th block of `variable_name`. Note that we are saying 
 the **value**, we are not (nor should we) deal with raw bytes.
 
 
