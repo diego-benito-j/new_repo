@@ -9,11 +9,6 @@
 </details>
 
 
-- [section: pass by reference vs. pass by value #26](https://github.com/deliaBlue/laPrepa/issues/26)
-- [section: Handling errors #25](https://github.com/deliaBlue/laPrepa/issues/25)
-- [section: dynamic memory allocation #24](https://github.com/deliaBlue/laPrepa/issues/24)
-
-
 # Memory Allocation
 
 Developing an understanding of how to store and manipulate information is one of our primary aims as programmers. Variables, pointers, references, functions, etc... - these are all just ways of organizing and managing data. Within the context of C / C++, we can begin to develop an understanding of how these abstract things behave by understanding how they are related to memory. 
