@@ -357,7 +357,7 @@ bjb
 
 There are three things to higlight with this example (see image for more context):
 
-![Overflow](graphical_assets/overflow_shown.jpeg)
+![Overflow](graphical_assets/overflow_shown.JPG)
 First, notice that our code is printing from j[0] to j[6] - since `j` and `b` are adjacent to each other, we see their contents interpreted as integers in each of the for loops.
 
 Second, notice that our first initialization of `j` assigned the string "jjj", but when we print the contents of j we only get "jj" and when print the bytes from j[0 .. 6] only the first two seem to have been assigned. As shown in the image, only j[0] and j[1] are regions of memory that the compiler has dedicated to our `j` string, this is because we declared `j` to be a string of length 2 `char j[2]`. Thus, there is no assurances that j[2] would contain whatever value it was assigned.
