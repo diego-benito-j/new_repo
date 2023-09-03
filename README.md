@@ -733,6 +733,40 @@ Before reading the solution/alternative code see if you can figure out what the 
 The computer **`can’t`** translate your source code into an executable file.
 
 ```c++
+#include <iostream>
+
+int main() {
+    char myChar = "a";  // Fails at compile-time
+
+    std::cout << myChar << std::endl;
+
+    return 0;
+}
+
+```
+
+```console
+dbj@dbj:~/new_repo/code_snippets$ g++ compile_time_fail.cpp -o compile_time_fail.x
+compile_time_fail.cpp: In function ‘int main()’:
+compile_time_fail.cpp:4:19: error: invalid conversion from ‘const char*’ to ‘char’ [-fpermissive]
+    4 |     char myChar = "a";  // Fails at compile-time
+      |                   ^~~
+      |                   |
+      |                   const char*
+
+```
+
+This error demonstrates how the use of " and ' differs. We could conceptualize " as indicating some string (i.e some array of chars as denoted by the asterisk following char) whilst ' would imply an individual char.  Thus, when we declare myChar as a char, not an array of chars, we get a compile-time error C++ does not allow us to assign a string literal to a char.
+
+
+
+```c++
+```
+
+
+Now lets put it all together, and lets debug this code by looking at the error messages themselves.
+
+```c++
                                         // missing header #include <algorithm>
 #include <iostream>
 #include <string>
@@ -931,7 +965,7 @@ You should be wary of syntax - you ~~may~~ will have missed something.
 
 # Time to practice
 
-Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems paying special attention to the error messages that you (and we) will inevitably get!
+Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems paying special attention to the error messages themselves.
 
 
 !(Square Every Digit)[https://www.codewars.com/kata/546e2562b03326a88e000020]
