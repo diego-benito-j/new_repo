@@ -124,7 +124,7 @@ int main(){
 We've declared a variable, in turn the compiler has allocated as much memory as
 we've specified or as much memory as is default. In our case, we've specified 
 that **a** is an array of 4 chars (meaning each `block` contains 1 byte since
-chars have that size [^unicode, ascii, and char arrays in C / C++ caveat]) 
+chars have that size ) 
 ergo 4 bytes will be allocated to variable **a**.
 
 We would say that this region in memory is uninitialized because the compiler
@@ -146,7 +146,7 @@ Try it! Create an empty string and print its content. You will get a random set 
 </details>
 
 To reiterate, **C / C++ do not have default values they assign to your variables
-whenever you declare them**[^when they do]. You need to initialize them.
+whenever you declare them**. You need to initialize them.
 In other words, this code in C++ has **undefined behaviour** because the value 
 of **a** will not always be the same:
 
@@ -646,7 +646,7 @@ dbj@dbj:~$
 
 </summary>
 
-##### Libraries & Scope (INCLUDE NAMESPACE???? STD::)
+##### Libraries & Scope
 
 You've probably written a python program importing some function/class from some library[^lib], where you've had to include a statement along the lines of `import sys` or `from sys import stdin`.
 
@@ -695,7 +695,6 @@ We urge you to try to understand the error before reading the concepts related t
 Before reading the solution/alternative code see if you can figure out what the intended behavior, and modify the code appropriately so it does what it ought to do.
 
     
-
 ## Compile-Time
 
 The computer **`can’t`** translate your source code into an executable file.
@@ -896,6 +895,10 @@ This is just to remind you that semantic errors are a pain, because they require
 
 You should be wary of syntax - you ~~may~~ will have missed something.
 
+
+# Time to practice
+
+Given this rudimentary introduction into C / C++ concepts relating to memory, and a brief introduction into the error messages themselves, try to complete the following Jutge problems and 
 
 [^1]: If you use an import statement within the main section of your program, it will be available for the entire program like when you write `import os` at the beginning of the file. You can technically import within functions, so that there is a local scope to the imported functions.
 
