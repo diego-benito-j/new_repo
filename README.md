@@ -245,6 +245,41 @@ Pay special attention to how we are printing things. We are using '%c' and '%i'
 , ostensibly saying "interpret whatever is in `variable_name[i]` as a 
 **name_of_datatype**".
 
+Casting is the act of explicitly converting one datatype into another. When you use %c for an int, you're performing an implicit cast, telling the program to read the data as if it were a char. Note that the underlying data isn't changed; what changes is how the program interpreates it. 
+
+Casting can be dangerous if not done carefully, as you risk misinterpreting the data, leading to bugs that can be difficult to diagnose. This is something you should have in mind when operating on floats and integers, because the set of operations that they can do together might become a problematic. Consider the following situation where we want to calculate the ratio between the distances of two atoms (like those you would find in a .pdb file!):
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int distance1 = 1;
+    int distance2 = 100;
+    float ratio;
+
+    // Incorrect calculation: integer division truncates result to zero
+    ratio = distance1 / distance2;
+    cout << "Incorrect ratio: " << ratio << endl;       // <-- prints 0
+
+    // Correct calculation: type casting before division
+    ratio = static_cast<float>(distance1) / distance2;
+    cout << "Correct ratio: " << ratio << endl;         // <-- print 0.01
+
+    return 0;
+}
+```
+
+```console
+dbj@dbj:~$ g++ distance.cpp -o distance.x
+dbj@dbj:~$ ./distance.x
+Incorrect ratio: 0
+Correct ratio: 0.01
+```
+
+As we can see, the division between integers results in an integer itself, which 'truncates' the result to 0 thereby generating an incorrect result. By casting one of the integers as a float (`static_cast<float>(distance1)`) we can resolve this issue in a really straightforward manner! Note that no error is raised **because the division between integers returning an integer is perfectly valid**, we just have to understand that behaviour!
+
 <details>
 <summary>
 
