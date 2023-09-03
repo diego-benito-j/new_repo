@@ -564,6 +564,8 @@ Lets see a very basic model that could be helpful. Consider a function `foo( par
 ![Pass by Value](graphical_assets/pass_by_value.JPG)
 
 On the other hand, we could conceptualize what is happening when we pass by reference as follows:
+
+
 ![Pass by Reference](graphical_assets/pass_by_ref.JPG)
 
 As we can see, the latter does not have to spend as much time copying each element of string `a` into the `foo`'s private copy, and therefore would be more efficient. 
