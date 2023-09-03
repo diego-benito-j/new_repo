@@ -503,15 +503,6 @@ generally more efficient than pass by reference when copying small-sized
 datatypes.
 
 
-https://www.ibm.com/docs/en/zos/2.4.0?topic=calls-pass-by-reference-c-only
-https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html#zz-2.1
-
-
-
-**EMBED EXAMPLE**
-https://icarus.cs.weber.edu/~dab/cs1410/textbook/6.Functions/value.html
-**EMBED EXAMPLE**
-
 
 So, we can rewrite the original code as follows, which will prevent our string from being copied EVERY TIME THE FUNCTION IS CALLED because instead of passing the value of the variable, we are passing the value of the reference:
 
@@ -575,6 +566,11 @@ As we can see, the latter does not have to spend as much time copying each eleme
 
 
 
+
+Useful Resources expanding on pass-by-reference and pointers:
+https://www.ibm.com/docs/en/zos/2.4.0?topic=calls-pass-by-reference-c-only
+https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html#zz-2.1
+https://icarus.cs.weber.edu/~dab/cs1410/textbook/6.Functions/value.html
 
 # Handling Errors
 
@@ -911,18 +907,5 @@ You should be wary of syntax - you ~~may~~ will have missed something.
 [^scope]: "Function-definition scope. Scope is the location in a program where a name is visible and accessible" - Weber State University, Computer Science 1410 6.2.2 Functions and Variable Scope
 
 
-
-[^why it isn’t just random]
-
-
-
-
-
-
-[^reading privileged information]:
-[^debugger variable names vs addresses]:
-[^unicode, ascii, and char arrays in C / C++ caveat]:
-[^when they do]:
-[^garabage collection, dynamic]:
 
 [^stack, function frames]: When a function is called, memory for local variables is allocated on the stack, and when the function returns, that memory is deallocated. This means that the local variables' values are no longer available or accessible once the function exits, and any attempt to access them after the function call has completed will lead to undefined behavior.
