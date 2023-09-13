@@ -206,5 +206,7 @@
   - [ ] An error that prevents the program from running
   - [x] An error where the program runs but doesn't behave as expected
   - [ ] An error that occurs when the code is syntactically incorrect
-  - Explanation: A semantic error is an error where the program compiles and runs without crashing, but it produces incorrect or unexpected results. This type of error is caused by flawed logic or incorrect use of programming constructs, leading to unintended behaviors in the program.
+  - Explanation: A semantic error is an error where the program compiles and runs without crashing, but it produces incorrect or unexpected results. This type of error is caused by flawed logic or incorrect use of programming constructs
 
+
+Esto no se quen poner.
