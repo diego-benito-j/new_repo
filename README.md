@@ -65,7 +65,7 @@ This is known as a memory address, and its just what the name implies, a name fo
 a location in memory.
 
 Whatever random data was held in memory before your program executes isn't
-particularly useful for our purposes[^reading privileged information]. 
+particularly useful for our purposes. 
 If we want to store specific information - i.e if we want to store the value of
 an integer, or a string of characters, or anything at all - we have to know 
 where we're storing it. 
@@ -941,7 +941,7 @@ some library[^lib], where you've had to include a statement along the lines of
 `import sys` or `from sys import stdin`.
 
 These statements are making whatever functions you specify **visible and 
-accessible** within your program [^1] - which is another way of saying that 
+accessible** within your program - which is another way of saying that 
 you are including the functions within the global **scope** [^scope] of your 
 program. In this particular case, the `import` statement ensures that whenever 
 the python interpreter reads `sys.stdin.readline()` or `stdin.readline()`, it 
@@ -1078,29 +1078,6 @@ a char, not an array of chars, we get a compile-time error since C++ fails to
 convert (`invalid conversion`) the array of chars it expected 
 (`from ´const char\*´ `) to the data type `myChar` was declared as (`char`). 
 
-
-</details>
-
-<details>
-<summary>
-
-#### Solution
-
-</summary>
-<br> 
-
-```c++
-#include <iostream>
-
-int main() {
-    char myChar = 'a';
-    
-    std::cout << myChar << std::endl;
-
-    return 0;
-}
-
-```
 
 </details>
 
@@ -1343,58 +1320,6 @@ string reverse( string input_seq ) { 		// <-- pass by ref or pass by value?
 </details>
 
 
-<details>
-<summary>
-
-#### Solution
-
-</summary>
-<br> 
-
-```c++
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <map>
-
-using namespace std; 
-
-string reverseComplement( string & input_seq ); 
-
-int main(){
-    string seq; 
-    string reversed_seq; 
-
-    cout << "Input DNA seq" << endl;
-    cin >> seq;
-    reversed_seq = reverseComplement( seq );
-    cout << "The reverse complemnt is " << reversed_seq << endl;
-
-}
-
-string reverseComplement( string & input_seq ) {
-    map< char , char > complement;
-    
-    complement[ 'A' ] = 'T';
-    complement[ 'T' ] = 'A';
-    complement[ 'C' ] = 'G';
-    complement[ 'G' ] = 'C';
-
-    string reverseStr;
-    
-    for (int i = 0; i < input_seq.length(); i++){
-        reverseStr += complement[ input_seq[ i ] ];
-    }
-    
-    reverse( reverseStr.begin(), reverseStr.end() ); 
-
-    return( reverseStr ); 
-}
-
-```
-
-</details>
-
 ## Run-Time Errors
 
 The computer **can** translate your source code into an executable file. The 
@@ -1488,56 +1413,6 @@ Floating point exception (core dumped)
 ```
 
 What would be a solution to this floating point exception? 
-
-</details>
-
-<details>
-
-<summary>
-
-#### Solution
-
-</summary>
-<br> 
-
-One possibility would be to simply check whether the sequence is of non-zero 
-length before we enter the body of the function.
-
-
-```c++
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-float calculate_gc_content(string& sequence) {
-    if (sequence.length() == 0){    // <--
-        return 0;                   // <--
-    }                               // <--
-
-    int gc_count = 0;
-    int total_sequence = 0;
-
-    for ( int i = 0; i < sequence.length(); i++) {
-        if (sequence[i] == 'G' || sequence[i] == 'C') {
-            gc_count++;
-        }
-        if (sequence[i] == 'G' || sequence[i] == 'C' || sequence[i] == 'A' || sequence[i] == 'T') {
-            total_sequence++;
-        }
-    }
-
-    return gc_count / total_sequence;  
-}
-
-int main() {
-    string dna_sequence = "AATGCGGG";  
-    float gc_content = calculate_gc_content(dna_sequence);
-    cout << "GC content: " << gc_content << endl;  
-    return 0;
-}
-
-```
 
 </details>
 
@@ -1639,29 +1514,6 @@ is being assigned. Remember that 0 is false and everything else is true.
 
 </details>
 
-<details>
-<summary>
-
-#### Solution
-
-</summary>
-<br>
-
-Why is `if ( dna[i] = 'G' )` problematic? Because we are using `=` instead 
-of `==` here, and when the program is executed, this line of code seems 
-perfectly reasonable to the compiler. When we evaluate `if ( dna[i] = 'G' )` 
-it's as if we are evaluating `'if 'G'`. The `if` statement is true because the 
-char 'G' is non-zero. Remember, an assignment simply returns the value of what 
-is assigned. 
-
-So our problematic implementation silently converts all elements of `dna` 
-string into 'G'´s whilst the if statement is evaluated as true. No error is 
-raised because this is perfectly reasonable code, it just isn't doing what you 
-want it to.
-
-
-
-</details>
 
 Let this be a reminder that semantic errors are a pain, because they require 
 you to notice something in your code that you will probably gloss over 
