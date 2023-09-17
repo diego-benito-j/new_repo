@@ -1477,6 +1477,16 @@ Try an empty string by modifying the input to the function, what will happen?
 Just modify `string dna_sequence = "AATGCGGG";`, or even better make the
 program read from `stdin` via `cin` so that you can test real-time inputs!
 
+
+Also consider the following:
+	*	Is the second `if` necessary?
+	*	Do I need to check if each char is ATCG?
+	*	Do I know the sequence length before hand?
+
+
+
+
+
 </details>
 
 
