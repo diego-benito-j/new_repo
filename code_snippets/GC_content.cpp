@@ -11,17 +11,21 @@ float calculate_gc_content(string& sequence) {
         if (sequence[i] == 'G' || sequence[i] == 'C') {
             gc_count++;
         }
+
+        // is this second `if` necessary?
+        // do I need to check if each char is ATCG?
+        // do I know the sequence length before hand?
         if (sequence[i] == 'G' || sequence[i] == 'C' || sequence[i] == 'A' || sequence[i] == 'T') {
             total_sequence++;
         }
     }
 
-    // G's and C's present, prevent truncation from integer division
+    // G's and C's present, prevent truncation by casting as float
     if (gc_count != 0) {
-        return static_cast<float>( gc_count ) / total_sequence; 
+        return (float) gc_count / total_sequence; 
     }
     
-    // G's and C's not present, meaning truncation is not a problem
+    // G's and C's not present (gc_count = 0), no need to prevent truncation
     return gc_count / total_sequence;
 }
 

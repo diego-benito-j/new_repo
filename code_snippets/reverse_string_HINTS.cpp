@@ -11,9 +11,8 @@ int main(){
     string seq; 
     string reversed_seq; 
 
-    cout << "Input DNA seq\n" ;
+    cout << "Input DNA seq" << endl ;
     cin >> seq;
-    //seq = "AAAAAAAA";
     reversed_seq = reverse( seq );
     cout << "The reverse complemnt is " << reversed_seq << endl     // <-- missing something
 
@@ -29,7 +28,7 @@ string reverse( string input_seq ) { 		// <-- pass by ref or pass by value?
 
     string reverseStr;
     
-    for (int i = 0, i < input_seq.length(), i++){       // <-- incorrect separator for `init` `condition` `increment`
+    for (int i = 0, i < input_seq.length(), i++){       // <-- incorrect separator for (`init`;`condition`;`increment`)
         reverseStr += complement[ input_seq[ i ] ];
     }
     

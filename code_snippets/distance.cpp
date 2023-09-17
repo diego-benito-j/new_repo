@@ -12,7 +12,7 @@ int main() {
     cout << "Incorrect ratio: " << ratio << endl;       // <-- prints 0
 
     // Correct calculation: type casting before division
-    ratio = static_cast<float>(distance1) / distance2;
+    ratio = (float) distance1  / distance2;
     cout << "Correct ratio: " << ratio << endl;         // <-- print 0.01
 
     return 0;
