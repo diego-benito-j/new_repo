@@ -12,9 +12,6 @@ float calculate_gc_content(string& sequence) {
             gc_count++;
         }
 
-        // is this second `if` necessary?
-        // do I need to check if each char is ATCG?
-        // do I know the sequence length before hand?
         if (sequence[i] == 'G' || sequence[i] == 'C' || sequence[i] == 'A' || sequence[i] == 'T') {
             total_sequence++;
         }
