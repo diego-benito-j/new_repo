@@ -21,10 +21,12 @@ int main() {
         }
         printf("\n");
 
-    j[3] = 'j';                             // <-- THIS SHOULD NOT BE MODIFYING B
+    j[3] = 'j';                             // HOW IS THIS MODIFYING B!!!???
         
         printf( b );
         printf("\n");
+        // printf( j );
+        // printf("\n");
 
         for ( int i = 0; i < 6; i++ ){
             printf( "%i\n", j[i] );
