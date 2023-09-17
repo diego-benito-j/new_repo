@@ -577,7 +577,7 @@ The parameter of function `reverseComplement` is a string datatype, and we are
 'passing' data by calling the function with some value 
 `reverseComplement( some_value )` - in our case, some_value is string `seq`. 
 Calling this function which receives the value of variable `seq` will declare a 
-new variable ( reverseComplement's `input_seq`) and it will initialize this 
+new variable ( `reverseComplement`'s `input_seq`) and it will initialize this 
 variable with the value that was passed as argument in the function call. This 
 variable is only available within the scope of the funciton
 [^stack_function_frames] and will no longer exist after the function call is
