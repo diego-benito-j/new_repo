@@ -457,14 +457,21 @@ memory.
 
 
 If you edit this code so that it prints out `j` after `b` has been initialized
-, why doesn't it print `"jj"`? Why does it print out `"jjbjb"`? Remember that 
-`char arrays` are delimited by `null` characters. When you try to print out 
-the contents of `j`, the `printf` function is going to interpret each byte 
-from `j[0]` onwards as a char **until it finds a `null` `char`**. Since it 
-doesn't find a `null` `char`, it simply keeps on printing, and the contents 
-of `b` is right next to the contents of `j` so we see `"jjbjb"`!
+, why doesn't it print `"jj"`? Why does it print out `"jjbjb"`?
 
-You should also consider that here isn't any assurances that printing `j` will result in `"jj"` even before `b` is declared, because only two bytes have been allocated to `j`, when we would actually need an array of size 3 to hold the `null` `char`.
+Remember that `char arrays` are delimited by `null` characters. When you try 
+to print out the contents of `j`, the `printf` function is going to interpret 
+each byte from `j[0]` onwards as a char **until it finds a `null char` **. 
+Since it doesn't find a `null char`, it simply keeps on printing, and the 
+contents of `b` is right next to the contents of `j`, so we see `"jjbjb"`!
+
+You should also consider that here isn't any assurances that printing `j` will 
+result in `"jj"`, even before `b` is declared! Only two bytes have been 
+allocated to `j`, when we would actually need an array of size 3 to hold the 
+`null char` that delimits the end of `j`. In other words, if we don't
+indicate the termination of the char array, or if we overshoot (`j` cannot
+hold more than 2 chars, and yet we initialize it as "jjj") then we will
+get **undefined behaviour**!
 
 
 ## Pass by Reference vs. Pass by value
@@ -1348,8 +1355,8 @@ string reverse( string input_seq ) { 		// <-- pass by ref or pass by value?
 
 </details>
 
-
 <details>
+<summary>
 
 #### Solution
 
