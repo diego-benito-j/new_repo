@@ -1508,6 +1508,7 @@ What would be a solution to this floating point exception?
 </details>
 
 <details>
+<summary>
 
 #### Solution
 
