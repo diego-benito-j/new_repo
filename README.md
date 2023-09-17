@@ -575,9 +575,9 @@ This is an example of variable passing (i.e argument passing) known as `Pass By 
 
 The parameter of function `reverseComplement` is a string datatype, and we are 
 'passing' data by calling the function with some value `reverseComplement( some
-\_value )` - in our case, some_value is string `seq`. Calling this function 
+_value )` - in our case, some_value is string `seq`. Calling this function 
 which receives the value of variable `seq` will declare a new variable (
-reverseComplement's `input\_seq`) and it will initialize this variable with 
+reverseComplement's `input_seq`) and it will initialize this variable with 
 the value that was passed as argument in the function call. This variable is 
 only available within the scope of the funciton[^stack_function_frames] and 
 will no longer exist after the function call is terminated. 
@@ -608,7 +608,7 @@ structures because it involves copying all the data.
 Pointers are a datatype that do **precisely what their name suggests**. They 
 literally "point" to a location in memory. A pointer stores the memory address 
 of another variable. For example, if you have variable `seq`, then a pointer 
-`ptr\_to\_seq` could hold the memory address of `seq`. This pointer can then be 
+`ptr_to_seq` could hold the memory address of `seq`. This pointer can then be 
 passed to a function, which can be dereferenced to access or modify the 
 original variable `seq`.
 
@@ -695,7 +695,7 @@ string reverseComplement( string & input_seq ) {
 ```
 
 Lets see a very basic model that could be helpful. Consider a function 
-`foo( param\_a )` that receives some string and returns its length. The 
+`foo( param_a )` that receives some string and returns its length. The 
 following would correspond to the sequence of steps that would transpire if 
 we used pass by value:
 
